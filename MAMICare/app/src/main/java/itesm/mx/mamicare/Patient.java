@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by Alfredo Hinojosa on 10/25/2015.
  */
-public class Patient {
+class Patient {
 
     private String name;
     private String birthday;
@@ -14,7 +14,7 @@ public class Patient {
     private String pregnancyWeek;
     private int photoID;
 
-    public Patient(String name, String week, int photo) {
+    Patient(String name, String week, int photo) {
         this.name = name;
         this.pregnancyWeek = week;
         this.photoID = photo;

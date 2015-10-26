@@ -2,31 +2,47 @@ package itesm.mx.mamicare;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends Activity {
 
-    TextView patientName;
-    TextView pregnancyWeek;
-    ImageView patientPhoto;
-
+    private List<Patient> pacientes; // List of the current patients
+    private RecyclerView rv; // Handle to the recycler view
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_recycler_view);
 
-        patientName = (TextView) findViewById(R.id.tv_PatientName);
-        pregnancyWeek = (TextView) findViewById(R.id.tv_PregnancyWeek);
-        patientPhoto = (ImageView) findViewById(R.id.imv_PatientPhoto);
+        rv = (RecyclerView) findViewById(R.id.theRecyclerView);
 
-        patientName.setText("Emma Wilson");
-        pregnancyWeek.setText("La semana es 16");
-        patientPhoto.setImageResource(R.drawable.photorosa);
+        // This makes the RecyclerView behave as a ListView
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        rv.setLayoutManager(llm);
+        rv.setHasFixedSize(true);// used to improve performance
 
+        initializeData(); // Load the sample data
+        initializeAdapter();
+    }
+
+    private void initializeData(){
+        pacientes = new ArrayList<>();
+        pacientes.add(new Patient("Rosa Jimenez", "Semana 12", R.drawable.photorosa));
+        pacientes.add(new Patient("Brenda Hernandez", "Semana 30", R.drawable.photorosa));
+        pacientes.add(new Patient("Teresa Ramirez", "Semana 4", R.drawable.photorosa));
+    }
+
+    private void initializeAdapter(){
+        RVAdapter adapter = new RVAdapter(pacientes);
+        rv.setAdapter(adapter);
     }
 
 }

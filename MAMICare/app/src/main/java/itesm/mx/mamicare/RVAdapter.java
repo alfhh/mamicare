@@ -75,8 +75,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PatienViewHolder> 
     @Override
     public void onBindViewHolder(PatienViewHolder personViewHolder, int i) {
         personViewHolder.patientName.setText(pacientes.get(i).getName());
-        personViewHolder.patientName.setText(pacientes.get(i).getPregnancyWeek());
-        personViewHolder.patientName.setText(pacientes.get(i).getPhotoID());
+        personViewHolder.preganancyWeek.setText(pacientes.get(i).getPregnancyWeek());
+        personViewHolder.patientPhoto.setImageResource(pacientes.get(i).getPhotoID());
     }
 
     /**
