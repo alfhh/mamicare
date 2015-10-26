@@ -161,6 +161,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/botonAgregar"
                 android:id="@+id/btn_AddNewPatient"
+                android:elevation="10dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true" />
 
@@ -170,6 +171,7 @@
                 android:text="@string/botonCancelar"
                 android:id="@+id/btn_CancelNewPatient"
                 android:layout_alignParentBottom="true"
+                android:elevation="10dp"
                 android:layout_toLeftOf="@+id/btn_AddNewPatient"
                 android:layout_marginRight="10dp"
                 />

@@ -4,13 +4,41 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 public class NewPatient extends Activity {
+
+    Button btnSubmit; // Button to save new patient
+    Button btnCancel; // Cancel the submission
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_patient);
+
+        btnSubmit = (Button) findViewById(R.id.btn_AddNewPatient);
+        btnCancel = (Button) findViewById(R.id.btn_CancelNewPatient);
+
+        OnClickListener listener = new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                if (btnSubmit.isPressed()){
+                    Toast.makeText(getApplication(), "Paciente agregado",
+                            Toast.LENGTH_SHORT).show();
+                } else if(btnCancel.isPressed()){
+                    Toast.makeText(getApplication(), "Registro cancelado",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+        // Register the buttons to the listener
+        btnSubmit.setOnClickListener(listener);
+        btnCancel.setOnClickListener(listener);
     }
 
     @Override
