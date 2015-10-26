@@ -7,4 +7,9 @@
     <!-- TextView strings -->
     <string name="menuP">Menu Principal</string>
 
+    <!-- Sample data strings -->
+    <string name="person_name">Rosa Jimenez</string>
+    <string name="pregnant_week">Semana de embarazo: 16</string>
+    <string name="last_check">Ultima revisión: 16 de Junio 15</string>
+
 </resources>
