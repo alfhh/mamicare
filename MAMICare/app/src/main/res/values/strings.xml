@@ -3,15 +3,21 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Opciones</string>
+    <string name="ppDesc">Profile Picture</string>
 
     <!-- Activities headings-->
     <string name="newPatient">Agregar nueva paciente</string>
+
+    <!-- Buttons -->
+    <string name="botonAgregar">Agregar registro</string>
+    <string name="botonCancelar">Cancelar registro</string>
 
     <!-- TextView strings -->
     <string name="menuP">Menu Principal</string>
     <string name="askName">Nombre de la paciente: </string>
     <string name="askAddress">Dirección de la paciente: </string>
     <string name="askPregWeek">Semana de embarazo actual: </string>
+    <string name="askBirthday">Fecha de nacimiento de la paciente: </string>
 
     <!-- TODO delete these, just for testing -->
     <!-- Sample data strings -->

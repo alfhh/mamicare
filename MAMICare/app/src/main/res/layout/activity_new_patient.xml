@@ -35,7 +35,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="16dp"
-                android:src="@drawable/nophoto" />
+                android:src="@drawable/nophoto"
+                android:contentDescription="@string/ppDesc" />
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -58,10 +59,6 @@
                         android:text="@string/askName" />
 
                     <!-- Space that helps formating -->
-                    <Space
-                        android:layout_width="200px"
-                        android:layout_height="20px"
-                        android:layout_column="1" />
 
                     <EditText
                         android:layout_width="wrap_content"
@@ -100,7 +97,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <!-- Pregnancy Weeks -->
+                    <!-- PREGNANCY WEEKS -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -118,7 +115,64 @@
                         android:id="@+id/et_PregnancyWeek"
                         android:layout_column="2" />
                 </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <!-- PATIENT BIRTHDAY-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/askBirthday"
+                        android:textSize="24sp"
+                        android:id="@+id/tv_PatientBirthday"
+                        android:layout_column="0" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <!-- USED TO HELP FORMATING -->
+                    <Space
+                        android:layout_width="20px"
+                        android:layout_height="40px"
+                        android:layout_column="0" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <!-- PATIENT BIRTHDAY -->
+                    <DatePicker
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/datePicker"
+                        android:layout_column="0" />
+                </TableRow>
+
             </TableLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/botonAgregar"
+                android:id="@+id/btn_AddNewPatient"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/botonCancelar"
+                android:id="@+id/btn_CancelNewPatient"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/btn_AddNewPatient"
+                android:layout_marginRight="10dp"
+                />
 
 
         </RelativeLayout>
