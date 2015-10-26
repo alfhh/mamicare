@@ -2,5 +2,9 @@
     <string name="app_name">MAMICare</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Opciones</string>
+
+    <!-- TextView strings -->
+    <string name="menuP">Menu Principal</string>
+
 </resources>
