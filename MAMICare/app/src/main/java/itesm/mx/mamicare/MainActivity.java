@@ -20,8 +20,9 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler_view);
+        setContentView(R.layout.activity_main);
 
+        // Find the recycler view
         rv = (RecyclerView) findViewById(R.id.theRecyclerView);
 
         // This makes the RecyclerView behave as a ListView
@@ -30,14 +31,15 @@ public class MainActivity extends Activity {
         rv.setHasFixedSize(true);// used to improve performance
 
         initializeData(); // Load the sample data
-        initializeAdapter();
+        initializeAdapter(); // Initialize the adapter
     }
 
     private void initializeData(){
         pacientes = new ArrayList<>();
         pacientes.add(new Patient("Rosa Jimenez", "Semana 12", R.drawable.photorosa));
-        pacientes.add(new Patient("Brenda Hernandez", "Semana 30", R.drawable.photorosa));
-        pacientes.add(new Patient("Teresa Ramirez", "Semana 4", R.drawable.photorosa));
+        pacientes.add(new Patient("Brenda Hernandez", "Semana 30", R.drawable.emma));
+        pacientes.add(new Patient("Teresa Ramirez", "Semana 4", R.drawable.lavery));
+        pacientes.add(new Patient("Guadalupe Gonzales", "Semana 20", R.drawable.lillie));
     }
 
     private void initializeAdapter(){
