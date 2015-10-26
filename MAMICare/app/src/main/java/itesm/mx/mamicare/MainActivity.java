@@ -1,6 +1,7 @@
 package itesm.mx.mamicare;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -48,8 +49,11 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
 
+                Intent intent;
+
                 if (btn_Addpatient.isPressed()){
-                    Toast.makeText(getApplication(), "Create patient", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(MainActivity.this, NewPatient.class);
+                    startActivity(intent);
                 }
             }
         };
@@ -63,10 +67,10 @@ public class MainActivity extends Activity {
      */
     private void initializeData(){
         pacientes = new ArrayList<>();
-        pacientes.add(new Patient("Rosa Jimenez", "Semana 12", R.drawable.photorosa));
-        pacientes.add(new Patient("Brenda Hernandez", "Semana 30", R.drawable.emma));
-        pacientes.add(new Patient("Teresa Ramirez", "Semana 4", R.drawable.lavery));
-        pacientes.add(new Patient("Guadalupe Gonzales", "Semana 20", R.drawable.lillie));
+        pacientes.add(new Patient("Rosa Jimenez", "Semana de emabarazo actual: 12", R.drawable.photorosa));
+        pacientes.add(new Patient("Brenda Hernandez", "Semana de emabarazo actual:30", R.drawable.emma));
+        pacientes.add(new Patient("Teresa Ramirez", "Semana de emabarazo actual: 4", R.drawable.lavery));
+        pacientes.add(new Patient("Guadalupe Gonzales", "Semana de emabarazo actual: 20", R.drawable.lillie));
     }
 
     /**

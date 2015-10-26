@@ -4,12 +4,20 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Opciones</string>
 
+    <!-- Activities headings-->
+    <string name="newPatient">Agregar nueva paciente</string>
+
     <!-- TextView strings -->
     <string name="menuP">Menu Principal</string>
+    <string name="askName">Nombre de la paciente: </string>
+    <string name="askAddress">Dirección de la paciente: </string>
+    <string name="askPregWeek">Semana de embarazo actual: </string>
 
+    <!-- TODO delete these, just for testing -->
     <!-- Sample data strings -->
-    <string name="person_name">Rosa Jimenez</string>
-    <string name="pregnant_week">Semana de embarazo: 16</string>
+    <string name="person_name">Ejemplo: Rosa Jimenez</string>
+    <string name="person_address">Ejemplo: Santiago Nuevo Leon</string>
+    <string name="pregnant_week">Ejemplo: 16</string>
     <string name="last_check">Ultima revisión: 16 de Junio 15</string>
     <string name="title_activity_recycler_view">RecyclerViewActivity</string>
     <string name="title_activity_new_patient">NewPatient</string>
