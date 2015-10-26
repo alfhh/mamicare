@@ -11,22 +11,21 @@ public class Patient {
     private String name;
     private String birthday;
     private String address;
-    private int pregnancyWeek;
+    private String pregnancyWeek;
     private int photoID;
 
-    public Patient(String name, String address, int pregnancyWeek, int photoID) {
+    public Patient(String name, String week, int photo) {
         this.name = name;
-        this.address = address;
-        this.pregnancyWeek = pregnancyWeek;
+        this.pregnancyWeek = week;
+        this.photoID = photo;
     }
 
-    private List<Patient> pacientes;
+    public int getPhotoID() {
+        return photoID;
+    }
 
-    private void initializeData(){
-        pacientes = new ArrayList<>();
-        pacientes.add(new Patient("Rosa Jimenez", "Santiago NL", 16, R.drawable.photorosa));
-        pacientes.add(new Patient("Brenda Hernandez", "Santiago NL", 20, R.drawable.photorosa));
-        pacientes.add(new Patient("Teresa Ramirez", "Santiago NL", 4, R.drawable.photorosa));
+    public void setPhotoID(int photoID) {
+        this.photoID = photoID;
     }
 
     public String getName() {
@@ -53,11 +52,11 @@ public class Patient {
         this.address = address;
     }
 
-    public int getPregnancyWeek() {
+    public String getPregnancyWeek() {
         return pregnancyWeek;
     }
 
-    public void setPregnancyWeek(int pregnancyWeek) {
+    public void setPregnancyWeek(String pregnancyWeek) {
         this.pregnancyWeek = pregnancyWeek;
     }
 }

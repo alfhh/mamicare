@@ -21,7 +21,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/person_photo"
+                android:id="@+id/imv_PatientPhoto"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="16dp"
@@ -30,8 +30,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/person_name"
-                android:layout_toRightOf="@+id/person_photo"
+                android:id="@+id/tv_PatientName"
+                android:layout_toRightOf="@+id/imv_PatientPhoto"
                 android:layout_alignParentTop="true"
                 android:textSize="30sp"
                 />
@@ -39,10 +39,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/person_age"
-                android:layout_toRightOf="@+id/person_photo"
-                android:layout_below="@+id/person_name"
+                android:id="@+id/tv_PregnancyWeek"
+                android:layout_toRightOf="@+id/imv_PatientPhoto"
+                android:layout_below="@+id/tv_PatientName"
                 />
+
+            <!-- TODO ADD THIS FIELD TO CARDS -->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/tv_LastCheck"-->
+                <!--android:layout_toRightOf="@+id/imv_PatientPhoto"-->
+                <!--android:layout_below="@+id/tv_PregnancyWeek"-->
+                <!--/>-->
 
         </RelativeLayout>
 
