@@ -56,18 +56,25 @@
                         android:id="@+id/tv_PatientName"
                         android:layout_toRightOf="@+id/imv_PatientPhoto"
                         android:textSize="24sp"
+                        android:layout_column="0"
                         android:text="@string/askName" />
+
+                    <!-- TO HELP FORMATING -->
+                    <Space
+                        android:layout_width="200px"
+                        android:layout_height="20px"
+                        android:layout_column="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/uName"
+                        android:textSize="24sp"
+                        android:id="@+id/tv_ActiveUserName"
+                        android:layout_column="2" />
 
                     <!-- Space that helps formating -->
 
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
-                        android:hint="@string/person_name"
-                        android:textSize="24sp"
-                        android:id="@+id/et_PatientName"
-                        android:layout_column="2" />
                 </TableRow>
 
                 <TableRow
@@ -83,14 +90,14 @@
                         android:text="@string/askAddress"
                         />
 
-                    <EditText
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:inputType="textPostalAddress"
-                        android:hint="@string/person_address"
+                        android:text="@string/uAddress"
+                        android:id="@+id/tv_ActiveUserAddress"
                         android:textSize="24sp"
-                        android:id="@+id/et_PatientAddresss"
                         android:layout_column="2" />
+
                 </TableRow>
 
                 <TableRow
@@ -106,14 +113,14 @@
                         android:text="@string/askPregWeek"
                         />
 
-                    <EditText
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:hint="@string/pregnant_week"
+                        android:text="@string/uPregWeek"
                         android:textSize="24sp"
-                        android:id="@+id/et_PregnancyWeek"
+                        android:id="@+id/tv_ActiveUserPregWeek"
                         android:layout_column="2" />
+
                 </TableRow>
 
                 <TableRow
@@ -129,29 +136,14 @@
                         android:id="@+id/tv_PatientBirthday"
                         android:layout_column="0" />
 
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <!-- USED TO HELP FORMATING -->
-                    <Space
-                        android:layout_width="20px"
-                        android:layout_height="40px"
-                        android:layout_column="0" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <!-- PATIENT BIRTHDAY -->
-                    <DatePicker
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/datePicker"
-                        android:layout_column="0" />
+                        android:text="@string/uAge"
+                        android:textSize="24sp"
+                        android:id="@+id/tv_ActiveUserBirthday"
+                        android:layout_column="2" />
+
                 </TableRow>
 
             </TableLayout>

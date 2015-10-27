@@ -21,6 +21,13 @@
 
     <!-- TODO delete these, just for testing -->
     <!-- Sample data strings -->
+    <string name="uName">Rosa Jimenez</string>
+    <string name="uAddress">Santiago Nuevo León</string>
+    <string name="uAge">26 de agosto de 1992</string>
+    <string name="uPregWeek">Semana de embarazo actual: 12</string>
+    <string name="uLastCheck">Ultima revisión: 10 de agosto 2015</string>
+
+    <!-- Question strings -->
     <string name="person_name">Ejemplo: Rosa Jimenez</string>
     <string name="person_address">Ejemplo: Santiago Nuevo Leon</string>
     <string name="pregnant_week">Ejemplo: 16</string>
