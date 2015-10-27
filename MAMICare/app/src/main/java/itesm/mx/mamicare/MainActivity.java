@@ -57,7 +57,9 @@ public class MainActivity extends Activity {
                 Intent intent;
 
                 if (btn_Addpatient.isPressed()){
-                    intent = new Intent(MainActivity.this, NewPatient.class);
+                    // TODO CHANGE THE ACTION OF THIS BUTTON
+                    //intent = new Intent(MainActivity.this, NewPatient.class);
+                    intent = new Intent(MainActivity.this, PatientProfile.class);
                     startActivity(intent); // Go to activity to add new patient
                 }
             }

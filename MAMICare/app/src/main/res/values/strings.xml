@@ -11,6 +11,8 @@
     <!-- Buttons -->
     <string name="botonAgregar">Agregar registro</string>
     <string name="botonCancelar">Cancelar registro</string>
+    <string name="botonNuevaRevision">Nueva revisión</string>
+    <string name="botonNuevoEmbarazo">Nuevo embarazo</string>
 
     <!-- TextView strings -->
     <string name="menuP">Menu Principal</string>
@@ -18,6 +20,7 @@
     <string name="askAddress">Dirección de la paciente: </string>
     <string name="askPregWeek">Semana de embarazo actual: </string>
     <string name="askBirthday">Fecha de nacimiento de la paciente: </string>
+    <string name="askLastCheck">Ultima revisión: </string>
 
     <!-- TODO delete these, just for testing -->
     <!-- Sample data strings -->
@@ -25,7 +28,7 @@
     <string name="uAddress">Santiago Nuevo León</string>
     <string name="uAge">26 de agosto de 1992</string>
     <string name="uPregWeek">Semana de embarazo actual: 12</string>
-    <string name="uLastCheck">Ultima revisión: 10 de agosto 2015</string>
+    <string name="uLastCheck">10 de agosto 2015</string>
 
     <!-- Question strings -->
     <string name="person_name">Ejemplo: Rosa Jimenez</string>

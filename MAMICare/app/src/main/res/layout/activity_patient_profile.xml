@@ -35,7 +35,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="16dp"
-                android:src="@drawable/nophoto"
+                android:src="@drawable/photorosa"
                 android:contentDescription="@string/ppDesc" />
 
             <TableLayout
@@ -146,13 +146,36 @@
 
                 </TableRow>
 
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <!-- PATIENT LAST CHECK-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/askLastCheck"
+                        android:textSize="24sp"
+                        android:id="@+id/tv_PatientLastCheck"
+                        android:layout_column="0" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/uLastCheck"
+                        android:textSize="24sp"
+                        android:id="@+id/tv_ActiveUserL"
+                        android:layout_column="2" />
+
+                </TableRow>
+
             </TableLayout>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/botonAgregar"
-                android:id="@+id/btn_AddNewPatient"
+                android:text="@string/botonNuevaRevision"
+                android:id="@+id/btn_AddNewCheck"
                 android:elevation="10dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true" />
@@ -160,11 +183,11 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/botonCancelar"
-                android:id="@+id/btn_CancelNewPatient"
+                android:text="@string/botonNuevoEmbarazo"
+                android:id="@+id/btn_AddNewPregnancy"
                 android:layout_alignParentBottom="true"
                 android:elevation="10dp"
-                android:layout_toLeftOf="@+id/btn_AddNewPatient"
+                android:layout_toLeftOf="@+id/btn_AddNewCheck"
                 android:layout_marginRight="10dp"
                 />
 
