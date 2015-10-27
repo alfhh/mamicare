@@ -1,0 +1,184 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="itesm.mx.mamicare.NewPatient">
+
+    <!-- A single card with different info of the patient -->
+    <!-- TODO CHECK THE LAYOUT WIDTH OF THE CARDS, IS FIXED RIGHT NOW -->
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="1150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:id="@+id/cv"
+
+        app:cardCornerRadius="2dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            >
+
+            <!-- Fixed width and layout for the patient photo -->
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="255dp"
+                android:id="@+id/imv_PatientPhoto"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/nophoto"
+                android:contentDescription="@string/ppDesc" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/imv_PatientPhoto"
+                >
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <!-- PATIENT NAME -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_PatientName"
+                        android:layout_toRightOf="@+id/imv_PatientPhoto"
+                        android:textSize="24sp"
+                        android:text="@string/askName" />
+
+                    <!-- Space that helps formating -->
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:hint="@string/person_name"
+                        android:textSize="24sp"
+                        android:id="@+id/et_PatientName"
+                        android:layout_column="2" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <!-- PATIENT ADDRESS -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_PatientAddress"
+                        android:textSize="24sp"
+                        android:text="@string/askAddress"
+                         />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPostalAddress"
+                        android:hint="@string/person_address"
+                        android:textSize="24sp"
+                        android:id="@+id/et_PatientAddresss"
+                        android:layout_column="2" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <!-- PREGNANCY WEEKS -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_PregWeek"
+                        android:textSize="24sp"
+                        android:text="@string/askPregWeek"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:hint="@string/pregnant_week"
+                        android:textSize="24sp"
+                        android:id="@+id/et_PregnancyWeek"
+                        android:layout_column="2" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <!-- PATIENT BIRTHDAY-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/askBirthday"
+                        android:textSize="24sp"
+                        android:id="@+id/tv_PatientBirthday"
+                        android:layout_column="0" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <!-- USED TO HELP FORMATING -->
+                    <Space
+                        android:layout_width="20px"
+                        android:layout_height="40px"
+                        android:layout_column="0" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <!-- PATIENT BIRTHDAY -->
+                    <DatePicker
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/datePicker"
+                        android:layout_column="0" />
+                </TableRow>
+
+            </TableLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/botonAgregar"
+                android:id="@+id/btn_AddNewPatient"
+                android:elevation="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/botonCancelar"
+                android:id="@+id/btn_CancelNewPatient"
+                android:layout_alignParentBottom="true"
+                android:elevation="10dp"
+                android:layout_toLeftOf="@+id/btn_AddNewPatient"
+                android:layout_marginRight="10dp"
+                />
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

@@ -1,5 +1,7 @@
 <resources>
 
+    <!-- This style sheet only applies to devices running an API lower than Lollipop -->
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <!-- Customize your theme here. -->

@@ -2,5 +2,41 @@
     <string name="app_name">MAMICare</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Opciones</string>
+    <string name="ppDesc">Profile Picture</string>
+
+    <!-- Activities headings-->
+    <string name="newPatient">Agregar nueva paciente</string>
+
+    <!-- Buttons -->
+    <string name="botonAgregar">Agregar registro</string>
+    <string name="botonCancelar">Cancelar registro</string>
+    <string name="botonNuevaRevision">Nueva revisión</string>
+    <string name="botonNuevoEmbarazo">Nuevo embarazo</string>
+
+    <!-- TextView strings -->
+    <string name="menuP">Menu Principal</string>
+    <string name="askName">Nombre de la paciente: </string>
+    <string name="askAddress">Dirección de la paciente: </string>
+    <string name="askPregWeek">Semana de embarazo actual: </string>
+    <string name="askBirthday">Fecha de nacimiento de la paciente: </string>
+    <string name="askLastCheck">Ultima revisión: </string>
+
+    <!-- TODO delete these, just for testing -->
+    <!-- Sample data strings -->
+    <string name="uName">Rosa Jimenez</string>
+    <string name="uAddress">Santiago Nuevo León</string>
+    <string name="uAge">26 de agosto de 1992</string>
+    <string name="uPregWeek">Semana de embarazo actual: 12</string>
+    <string name="uLastCheck">10 de agosto 2015</string>
+
+    <!-- Question strings -->
+    <string name="person_name">Ejemplo: Rosa Jimenez</string>
+    <string name="person_address">Ejemplo: Santiago Nuevo Leon</string>
+    <string name="pregnant_week">Ejemplo: 16</string>
+    <string name="last_check">Ultima revisión: 16 de Junio 15</string>
+    <string name="title_activity_recycler_view">RecyclerViewActivity</string>
+    <string name="title_activity_new_patient">NewPatient</string>
+    <string name="title_activity_patient_profile">PatientProfile</string>
+
 </resources>

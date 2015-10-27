@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="itesm.mx.mamicare" >
 
+    <!-- TODO Change app icon -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,6 +16,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".NewPatient"
+            android:label="@string/newPatient" >
+        </activity>
+        <activity
+            android:name=".PatientProfile"
+            android:label="@string/title_activity_patient_profile" >
         </activity>
     </application>
 

@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- This XML file is the one that has all the data related with the material design -->
+
 <resources>
+    <!-- Material Design theme -->
     <style name="AppTheme" parent="android:Theme.Material.Light">
+
+        <!-- Primary colors -->
+        <item name="android:colorPrimary">#03A9F4</item>
+        <item name="android:colorPrimaryDark">#0288D1</item>
+        <item name="android:colorAccent">#FF4081</item>
+
+        <!-- TODO CHECK IF THESE COLORS WORKS -->
+        <item name="android:colorButtonNormal">#B3E5FC</item>
+        <!--<item name="android:divider">#B6B6B6</item>-->
+
+
+        <!-- Different color for the navigation bar -->
+        <!-- In this case the navigation bar is transparent -->
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+
+        <!-- Font colors -->
+        <item name="android:textColor">#212121</item>
+        <item name="android:textColorSecondary">#727272</item>
+
     </style>
 </resources>
