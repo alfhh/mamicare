@@ -19,6 +19,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PatienViewHolder> 
         CardView cv; // The Material Design card
         TextView patientName; // Name of the patient
         TextView preganancyWeek; // Week of pregnancy of the patient
+        TextView lastCheck; // The date of the last health check
         ImageView patientPhoto; // Photo of the patient
 
         // Initialize the views that compose the Card (aka cv)
@@ -27,6 +28,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PatienViewHolder> 
             cv = (CardView) itemView.findViewById(R.id.cv);
             patientName = (TextView) itemView.findViewById(R.id.tv_PatientName);
             preganancyWeek = (TextView) itemView.findViewById(R.id.tv_PregnancyWeek);
+            lastCheck = (TextView) itemView.findViewById(R.id.tv_LastCheck);
             patientPhoto = (ImageView) itemView.findViewById(R.id.imv_PatientPhoto);
         }
     }
@@ -77,6 +79,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PatienViewHolder> 
         personViewHolder.patientName.setText(pacientes.get(i).getName());
         personViewHolder.preganancyWeek.setText(pacientes.get(i).getPregnancyWeek());
         personViewHolder.patientPhoto.setImageResource(pacientes.get(i).getPhotoID());
+        personViewHolder.lastCheck.setText(pacientes.get(i).getLastCheck());
     }
 
     /**

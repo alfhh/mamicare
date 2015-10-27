@@ -64,8 +64,6 @@ public class MainActivity extends Activity {
         };
         // Register the buttons to the listener
         btn_Addpatient.setOnClickListener(listener);
-
-
     }
 
     /**
@@ -73,10 +71,17 @@ public class MainActivity extends Activity {
      */
     private void initializeData(){
         pacientes = new ArrayList<>();
-        pacientes.add(new Patient("Rosa Jimenez", "Semana de emabarazo actual: 12", R.drawable.photorosa));
-        pacientes.add(new Patient("Brenda Hernandez", "Semana de emabarazo actual:30", R.drawable.emma));
-        pacientes.add(new Patient("Teresa Ramirez", "Semana de emabarazo actual: 4", R.drawable.lavery));
-        pacientes.add(new Patient("Guadalupe Gonzales", "Semana de emabarazo actual: 20", R.drawable.lillie));
+        pacientes.add(new Patient("Rosa Jimenez", "Semana de emabarazo actual: 12",
+                R.drawable.photorosa, "Ultima revisión: 10 de agosto 2015"));
+
+        pacientes.add(new Patient("Brenda Hernandez", "Semana de emabarazo actual:30",
+                R.drawable.emma, "Ultima revisión: 15 de agosto 2015"));
+
+        pacientes.add(new Patient("Teresa Ramirez", "Semana de emabarazo actual: 4",
+                R.drawable.lavery, "Ultima revisión: 1 de septiembre 2015"));
+
+        pacientes.add(new Patient("Guadalupe Gonzales", "Semana de emabarazo actual: 20",
+                R.drawable.lillie, "Ultima revisión: 10 de septiembre 2015"));
     }
 
 

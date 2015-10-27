@@ -21,6 +21,10 @@
             android:name=".NewPatient"
             android:label="@string/newPatient" >
         </activity>
+        <activity
+            android:name=".PatientProfile"
+            android:label="@string/title_activity_patient_profile" >
+        </activity>
     </application>
 
 </manifest>

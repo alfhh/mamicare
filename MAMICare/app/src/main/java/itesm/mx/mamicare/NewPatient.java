@@ -30,9 +30,11 @@ public class NewPatient extends Activity {
                 if (btnSubmit.isPressed()){
                     Toast.makeText(getApplication(), "Paciente agregado",
                             Toast.LENGTH_SHORT).show();
+                            finish();
                 } else if(btnCancel.isPressed()){
                     Toast.makeText(getApplication(), "Registro cancelado",
                             Toast.LENGTH_SHORT).show();
+                            finish();
                 }
             }
         };

@@ -47,6 +47,15 @@
             android:layout_below="@+id/tv_PatientName"
             android:textSize="24sp"
             android:text="@string/pregnant_week" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_LastCheck"
+            android:layout_toRightOf="@+id/imv_PatientPhoto"
+            android:layout_below="@+id/tv_PregnancyWeek"
+            android:textSize="24sp"
+            android:text="@string/last_check" />
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

@@ -12,12 +12,22 @@ class Patient {
     private String birthday;
     private String address;
     private String pregnancyWeek;
+    private String lastCheck;
     private int photoID;
 
-    Patient(String name, String week, int photo) {
+    Patient(String name, String week, int photo, String lastC) {
         this.name = name;
         this.pregnancyWeek = week;
         this.photoID = photo;
+        this.lastCheck = lastC;
+    }
+
+    public String getLastCheck() {
+        return lastCheck;
+    }
+
+    public void setLastCheck(String lastCheck) {
+        this.lastCheck = lastCheck;
     }
 
     public int getPhotoID() {
