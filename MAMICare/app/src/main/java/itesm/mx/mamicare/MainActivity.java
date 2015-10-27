@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -21,6 +22,7 @@ import java.util.List;
 public class MainActivity extends Activity {
 
     ImageButton btn_Addpatient; // Used to add a new patient
+    Patient selectedPatient;
 
     private List<Patient> pacientes; // List of the current patients
     private RecyclerView rv; // Handle to the recycler view
@@ -42,8 +44,11 @@ public class MainActivity extends Activity {
         rv.setHasFixedSize(true);// used to improve performance
 
         initializeData(); // Load the sample data
-        initializeAdapter(); // Initialize the adapter
 
+        final RVAdapter adapter = new RVAdapter(pacientes);
+        rv.setAdapter(adapter);
+
+        // Listener for buttons
         OnClickListener listener = new OnClickListener() {
 
             @Override
@@ -53,12 +58,13 @@ public class MainActivity extends Activity {
 
                 if (btn_Addpatient.isPressed()){
                     intent = new Intent(MainActivity.this, NewPatient.class);
-                    startActivity(intent);
+                    startActivity(intent); // Go to activity to add new patient
                 }
             }
         };
         // Register the buttons to the listener
         btn_Addpatient.setOnClickListener(listener);
+
 
     }
 
@@ -73,12 +79,5 @@ public class MainActivity extends Activity {
         pacientes.add(new Patient("Guadalupe Gonzales", "Semana de emabarazo actual: 20", R.drawable.lillie));
     }
 
-    /**
-     * Initialize the adapter to display the cards
-     */
-    private void initializeAdapter(){
-        RVAdapter adapter = new RVAdapter(pacientes);
-        rv.setAdapter(adapter);
-    }
 
 }
