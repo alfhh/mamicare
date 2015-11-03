@@ -2,18 +2,20 @@ package itesm.mx.mamicare;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 /**
  * Created by Alfredo Hinojosa on 10/26/2015.
  */
-public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PatienViewHolder> {
+public class  RVAdapter extends RecyclerView.Adapter<RVAdapter.PatienViewHolder> {
 
     public static class PatienViewHolder extends RecyclerView.ViewHolder{
         CardView cv; // The Material Design card
@@ -30,6 +32,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PatienViewHolder> 
             preganancyWeek = (TextView) itemView.findViewById(R.id.tv_PregnancyWeek);
             lastCheck = (TextView) itemView.findViewById(R.id.tv_LastCheck);
             patientPhoto = (ImageView) itemView.findViewById(R.id.imv_PatientPhoto);
+            cv.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Log.d("USEFUL LOG", "Card of " + patientName.getText() + " clicked");
+                }
+            });
         }
     }
 
@@ -75,11 +82,17 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PatienViewHolder> 
      * @param i the position of the patient in the list
      */
     @Override
-    public void onBindViewHolder(PatienViewHolder personViewHolder, int i) {
+    public void onBindViewHolder(PatienViewHolder personViewHolder, final int i) {
         personViewHolder.patientName.setText(pacientes.get(i).getName());
         personViewHolder.preganancyWeek.setText(pacientes.get(i).getPregnancyWeek());
         personViewHolder.patientPhoto.setImageResource(pacientes.get(i).getPhotoID());
         personViewHolder.lastCheck.setText(pacientes.get(i).getLastCheck());
+//        personViewHolder.patientPhoto.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Log.d("USEFUL LOG", "The patient is the number " + pacientes.get(i).getName());
+//            }
+//        });
+
     }
 
     /**

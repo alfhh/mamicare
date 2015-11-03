@@ -22,7 +22,7 @@ import java.util.List;
 public class MainActivity extends Activity {
 
     ImageButton btn_Addpatient; // Used to add a new patient
-    Patient selectedPatient;
+    Patient selectedPatient; // Used for getting the view
 
     private List<Patient> pacientes; // List of the current patients
     private RecyclerView rv; // Handle to the recycler view
@@ -47,6 +47,7 @@ public class MainActivity extends Activity {
 
         final RVAdapter adapter = new RVAdapter(pacientes);
         rv.setAdapter(adapter);
+
 
         // Listener for buttons
         OnClickListener listener = new OnClickListener() {
