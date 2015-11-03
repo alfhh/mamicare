@@ -7,17 +7,47 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class NewPatient extends Activity {
 
+    //databse operations
+    DBOperations dao;//databse operations
+
     Button btnSubmit; // Button to save new patient
     Button btnCancel; // Cancel the submission
+    EditText etPatientName;
+    EditText etPatientAddress;
+    EditText etPregnancyWeek;
+
+    public void newPatient(View view) {
+        //get variables from interface
+        //int id = dao.getProductsCount()+1;
+        String name = etPatientName.getText().toString();
+        int pregnancyWeek = Integer.parseInt(etPregnancyWeek.getText().toString());
+        String address = etPatientAddress.getText().toString();
+
+        //declare and create product
+        Patient newPatient = new Patient(address, "2015-10-01", "2015-01-01", name);
+        Pregnancy newPregnancy = new Pregnancy(1, 1, 5);
+
+        //call product operations method addPatient
+        int patient_id = dao.addPatient(newPatient);
+        dao.addPregnancy(patient_id, newPregnancy);
+
+        //toast that product was added
+        Toast.makeText(getApplicationContext(), "Patient added", Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_patient);
+
+        etPatientName = (EditText) findViewById(R.id.et_PatientName);
+        etPatientAddress = (EditText) findViewById(R.id.et_PatientAddresss);
+        etPregnancyWeek = (EditText) findViewById(R.id.et_PregnancyWeek);
 
         btnSubmit = (Button) findViewById(R.id.btn_AddNewPatient);
         btnCancel = (Button) findViewById(R.id.btn_CancelNewPatient);
