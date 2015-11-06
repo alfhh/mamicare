@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
 
         initializeData(); // Load the sample data
 
-        final RVAdapter adapter = new RVAdapter(pacientes);
+        final RVAdapter adapter = new RVAdapter(getApplicationContext(),pacientes);
         rv.setAdapter(adapter);
 
 
@@ -59,8 +59,8 @@ public class MainActivity extends Activity {
 
                 if (btn_Addpatient.isPressed()){
                     // TODO CHANGE THE ACTION OF THIS BUTTON
-                    //intent = new Intent(MainActivity.this, NewPatient.class);
-                    intent = new Intent(MainActivity.this, PatientProfile.class);
+                    intent = new Intent(MainActivity.this, NewPatient.class);
+                    //intent = new Intent(MainActivity.this, PatientProfile.class);
                     startActivity(intent); // Go to activity to add new patient
                 }
             }
