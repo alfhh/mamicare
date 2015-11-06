@@ -8,12 +8,28 @@ import java.util.List;
  */
 class Patient {
 
+    private int id;
     private String name;
     private String birthday;
     private String address;
     private String pregnancyWeek;
     private String lastCheck;
     private int photoID;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Patient(String address, String lastCheck, String birthday, String name) {
+        this.address = address;
+        this.lastCheck = lastCheck;
+        this.birthday = birthday;
+        this.name = name;
+    }
 
     Patient(String name, String week, int photo, String lastC) {
         this.name = name;
