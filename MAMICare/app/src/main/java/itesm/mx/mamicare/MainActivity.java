@@ -23,19 +23,17 @@ public class MainActivity extends Activity {
 
     ImageButton btn_Addpatient; // Used to add a new patient
     Patient selectedPatient; // Used for getting the view
-
-    private List<Patient> pacientes; // List of the current patients
-    private RecyclerView rv; // Handle to the recycler view
+    List<Patient> pacientes; // List of the current patients
+    RecyclerView rv; // Handle to the recycler view
+    RVAdapter adapter; // The card adapter
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Find the recycler view
+        // Bind views
         rv = (RecyclerView) findViewById(R.id.theRecyclerView);
-
-        // Initialize views
         btn_Addpatient = (ImageButton) findViewById(R.id.btnNewPatient);
 
         // This makes the RecyclerView behave as a ListView
@@ -45,13 +43,12 @@ public class MainActivity extends Activity {
 
         initializeData(); // Load the sample data
 
-        final RVAdapter adapter = new RVAdapter(getApplicationContext(),pacientes);
+        adapter = new RVAdapter(getApplicationContext(),pacientes);
         rv.setAdapter(adapter);
 
 
         // Listener for buttons
         OnClickListener listener = new OnClickListener() {
-
             @Override
             public void onClick(View v) {
 
