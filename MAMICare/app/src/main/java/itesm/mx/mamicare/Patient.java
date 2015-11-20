@@ -11,10 +11,18 @@ class Patient {
     private int id;
     private String name;
     private String birthday;
-    private String address;
     private String pregnancyWeek;
     private String lastCheck;
-    private int photoID;
+    private String photo_path;
+
+    public Patient(int id, String name, String birthday, String pregnancyWeek, String lastCheck, String photo_path) {
+        this.id = id;
+        this.name = name;
+        this.birthday = birthday;
+        this.pregnancyWeek = pregnancyWeek;
+        this.lastCheck = lastCheck;
+        this.photo_path = photo_path;
+    }
 
     public int getId() {
         return id;
@@ -22,20 +30,6 @@ class Patient {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Patient(String address, String lastCheck, String birthday, String name) {
-        this.address = address;
-        this.lastCheck = lastCheck;
-        this.birthday = birthday;
-        this.name = name;
-    }
-
-    Patient(String name, String week, int photo, String lastC) {
-        this.name = name;
-        this.pregnancyWeek = week;
-        this.photoID = photo;
-        this.lastCheck = lastC;
     }
 
     public String getLastCheck() {
@@ -46,12 +40,12 @@ class Patient {
         this.lastCheck = lastCheck;
     }
 
-    public int getPhotoID() {
-        return photoID;
+    public String getPhoto_path() {
+        return photo_path;
     }
 
-    public void setPhotoID(int photoID) {
-        this.photoID = photoID;
+    public void setPhotoID(String photo_path) {
+        this.photo_path = photo_path;
     }
 
     public String getName() {
@@ -68,14 +62,6 @@ class Patient {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getPregnancyWeek() {

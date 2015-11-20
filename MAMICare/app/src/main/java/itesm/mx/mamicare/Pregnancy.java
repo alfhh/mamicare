@@ -10,6 +10,13 @@ public class Pregnancy {
     private int alert;
     private int pregnancyWeek;
 
+    public Pregnancy(int id, int patient_id, int alert, int pregnancyWeek) {
+        this.id = id;
+        this.patient_id = patient_id;
+        this.alert = alert;
+        this.pregnancyWeek = pregnancyWeek;
+    }
+
     public Pregnancy(int patient_id, int alert, int pregnancyWeek) {
         this.patient_id = patient_id;
         this.alert = alert;
