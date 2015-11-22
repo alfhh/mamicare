@@ -3,33 +3,44 @@ package itesm.mx.mamicare;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends Activity {
 
-    ImageButton btn_Addpatient; // Used to add a new patient
-    Patient selectedPatient; // Used for getting the view
     List<Patient> pacientes; // List of the current patients
     ListView pacientList; // ListView with patients
-    //RecyclerView rv; // Handle to the recycler view
+    ImageButton btn_Addpatient; // Used to add a new patient
+    Patient selectedPatient; // Used for getting the view
     PatientListAdapter patientAdapter;
-    RVAdapter adapter; // The card adapter
+
+    /**
+     * Goes to PatientProfile activity
+     * @param p patient selected from the ListView
+     */
+    public void goToPatientProfile(Patient p){
+        Intent i;
+
+        if(p != null){ // TODO CHANGE THIS WITH DB OPERATIONS
+            i = new Intent(MainActivity.this, PatientProfile.class);
+            i.putExtra("name", p.getName());
+            i.putExtra("address", p.getAddress());
+            i.putExtra("pregweek", p.getPregnancyWeek());
+            i.putExtra("bday", p.getBirthday());
+            i.putExtra("lastcheck", p.getLastCheck());
+            i.putExtra("img", p.getPhotoID());
+
+            startActivity(i);
+        }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +48,9 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         // Bind views
-        //rv = (RecyclerView) findViewById(R.id.theRecyclerView);
         pacientList = (ListView) findViewById(R.id.lvPatient);
         btn_Addpatient = (ImageButton) findViewById(R.id.btnNewPatient);
-
-        // This makes the RecyclerView behave as a ListView
-        //LinearLayoutManager llm = new LinearLayoutManager(this);
-        //rv.setLayoutManager(llm);
-        //rv.setHasFixedSize(true);// used to improve performance
-
         initializeData(); // Load the sample data
-
-        //adapter = new RVAdapter(getApplicationContext(),pacientes);
-        //rv.setAdapter(adapter);
         patientAdapter = new PatientListAdapter(getApplicationContext(), R.layout.item, pacientes);
         pacientList.setAdapter(patientAdapter);
 
@@ -58,9 +59,12 @@ public class MainActivity extends Activity {
         AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedPatient =  patientAdapter.getItem(position);
+
+                selectedPatient =  patientAdapter.getItem(position); // Get te patient
                 Log.d("PATIENT INFO", "Selected: " + selectedPatient.getName());
+                goToPatientProfile(selectedPatient);
             }
+
         };
         pacientList.setOnItemClickListener(itemListener);
 
@@ -74,7 +78,6 @@ public class MainActivity extends Activity {
                 if (btn_Addpatient.isPressed()){
                     // TODO CHANGE THE ACTION OF THIS BUTTON
                     intent = new Intent(MainActivity.this, NewPatient.class);
-                    //intent = new Intent(MainActivity.this, PatientProfile.class);
                     startActivity(intent); // Go to activity to add new patient
                 }
             }

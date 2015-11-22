@@ -164,7 +164,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/uLastCheck"
                         android:textSize="24sp"
-                        android:id="@+id/tv_ActiveUserL"
+                        android:id="@+id/tv_ActiveUserLastCheck"
                         android:layout_column="2" />
 
                 </TableRow>

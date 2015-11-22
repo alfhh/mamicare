@@ -29,6 +29,8 @@
         android:src="@drawable/ic_add_white_48dp"
         android:id="@+id/btnNewPatient"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="25dp" />
 
 </RelativeLayout>

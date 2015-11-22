@@ -5,8 +5,11 @@
     <string name="action_settings">Opciones</string>
     <string name="ppDesc">Profile Picture</string>
 
+
     <!-- Activities headings-->
+    <string name="MAMICARE">MAMICARE</string>
     <string name="newPatient">Agregar nueva paciente</string>
+    <string name="mainmenu">MAMICare - Menu principal</string>
 
     <!-- Buttons -->
     <string name="botonAgregar">Agregar registro</string>
