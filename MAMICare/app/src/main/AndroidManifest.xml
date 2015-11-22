@@ -25,6 +25,10 @@
             android:name=".PatientProfile"
             android:label="@string/title_activity_patient_profile" >
         </activity>
+        <activity
+            android:name=".Profiles"
+            android:label="@string/title_activity_profiles" >
+        </activity>
     </application>
 
 </manifest>

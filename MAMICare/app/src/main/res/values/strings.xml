@@ -38,5 +38,6 @@
     <string name="title_activity_recycler_view">RecyclerViewActivity</string>
     <string name="title_activity_new_patient">NewPatient</string>
     <string name="title_activity_patient_profile">PatientProfile</string>
+    <string name="title_activity_profiles">Profiles</string>
 
 </resources>

@@ -6,13 +6,19 @@
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
 
-    <!-- The RecyclerView where all the cards are loaded -->
-    <android.support.v7.widget.RecyclerView
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:id="@+id/theRecyclerView"
-        >
-    </android.support.v7.widget.RecyclerView>
+    <!--&lt;!&ndash; The RecyclerView where all the cards are loaded &ndash;&gt;-->
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:id="@+id/theRecyclerView"-->
+        <!-->-->
+    <!--</android.support.v7.widget.RecyclerView>-->
+
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lvPatient" />
 
     <ImageButton
         android:layout_width="75dp"
@@ -20,11 +26,9 @@
         android:background="@drawable/ovalo"
         android:elevation="10dp"
 
-        android:layout_alignBottom="@+id/theRecyclerView"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="34dp"
-        android:layout_marginBottom="42dp"
         android:src="@drawable/ic_add_white_48dp"
-        android:id="@+id/btnNewPatient" />
+        android:id="@+id/btnNewPatient"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
