@@ -1,8 +1,5 @@
 package itesm.mx.mamicare;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Alfredo Hinojosa on 10/25/2015.
  */
@@ -15,11 +12,17 @@ class Patient {
     private String lastCheck;
     private String photo_path;
 
-    public Patient(int id, String name, String birthday, String pregnancyWeek, String lastCheck, String photo_path) {
+    public Patient(String name, String birthday, String lastCheck, String photo_path) {
+        this.name = name;
+        this.birthday = birthday;
+        this.lastCheck = lastCheck;
+        this.photo_path = photo_path;
+    }
+
+    public Patient(int id, String name, String birthday, String lastCheck, String photo_path) {
         this.id = id;
         this.name = name;
         this.birthday = birthday;
-        this.pregnancyWeek = pregnancyWeek;
         this.lastCheck = lastCheck;
         this.photo_path = photo_path;
     }
@@ -64,11 +67,4 @@ class Patient {
         this.birthday = birthday;
     }
 
-    public String getPregnancyWeek() {
-        return pregnancyWeek;
-    }
-
-    public void setPregnancyWeek(String pregnancyWeek) {
-        this.pregnancyWeek = pregnancyWeek;
-    }
 }

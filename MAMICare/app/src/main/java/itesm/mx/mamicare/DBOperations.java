@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,7 +32,7 @@ public class DBOperations {
     private static final String COLUMN_PREGNANCY_ID = "_id";
     private static final String COLUMN_PATIENT_FK = "patinet_id";
     private static final String COLUMN_PREGNANCY_ALERT = "alert";
-    private static final String COLUMN_PREGNANCY_WEEK = "pregnancy_week";
+    private static final String COLUMN_PREGNANCY_START = "pregnancy_start";
     // assesment table
     private static final String TABLE_ASSESMENTS = "assesments";
     private static final String COLUMN_ASSESMENTS_ID = "_id";
@@ -44,10 +45,15 @@ public class DBOperations {
     ////////////////////////////////////////
     // Patient operations
     public int addPatient(Patient patient){
-        long insertedId=0;
+        long insertedId=-1;
         db = dbHelper.getWritableDatabase();
         try {
             ContentValues values = new ContentValues();
+            /*
+                date format is:
+                  birthday - dd-mm-yyyy
+                  lastCheck - dd-mm-yyyy-fff (fff = days from day 1)
+            */
             //inserting known values, remember id is automatically inserted
             values.put(COLUMN_PATIENT_NAME, patient.getName());
             values.put(COLUMN_PATIENT_LAST_CHECK, patient.getLastCheck());
@@ -101,8 +107,7 @@ public class DBOperations {
                         cursor.getString(1),
                         cursor.getString(2),
                         cursor.getString(3),
-                        cursor.getString(4),
-                        cursor.getString(5));
+                        cursor.getString(4));
             }
         } catch (SQLiteException e) {
             Log.d(TAG, "Error while trying to get patient number " + patientId);
@@ -116,21 +121,18 @@ public class DBOperations {
 
         db = dbHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-        List<Patient> patients = null;
+        List<Patient> patients = new ArrayList<>();
         try {
-            do {
-                Patient patient = null;
-                //fetch product from db
-                patient = new Patient (
+            while(cursor.moveToNext()){
+                Patient patient = new Patient (
                         Integer.parseInt(cursor.getString(0)),
                         cursor.getString(1),
                         cursor.getString(2),
                         cursor.getString(3),
-                        cursor.getString(4),
-                        cursor.getString(5));
+                        cursor.getString(4));
                 //adding to list
                 patients.add(patient);
-            } while (cursor.moveToNext());
+            }
         } catch (SQLiteException e) {
             Log.d(TAG, "Error while trying to get all patients");
         }
@@ -144,9 +146,9 @@ public class DBOperations {
 
         db = dbHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
+        int count = cursor.getCount();
         cursor.close();
-
-        return cursor.getCount();
+        return count;
     }
     ///////////////////////////////////////////
 
@@ -159,7 +161,7 @@ public class DBOperations {
             ContentValues values = new ContentValues();
             values.put(COLUMN_PATIENT_FK, patient.getId());
             values.put(COLUMN_PREGNANCY_ALERT, pregnancy.getAlert());
-            values.put(COLUMN_PREGNANCY_WEEK, pregnancy.getPregnancyWeek());
+            values.put(COLUMN_PREGNANCY_START, pregnancy.getPregnancyStart());
 
             pregnancyId = db.insert(TABLE_PREGNANCIES, null, values);
         } catch (SQLiteException e) {

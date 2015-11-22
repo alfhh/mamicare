@@ -9,7 +9,7 @@ import android.util.Log;
  * Created by SergioJesúsCorderoBa on 11/2/2015.
  */
 public class DBHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "mamicare.db";
     // patients table
     private static final String TABLE_PATIENTS = "patients";
@@ -23,7 +23,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String COLUMN_PREGNANCY_ID = "_id";
     private static final String COLUMN_PATIENT_FK = "patinet_id";
     private static final String COLUMN_PREGNANCY_ALERT = "alert";
-    private static final String COLUMN_PREGNANCY_WEEK = "pregnancy_week";
+    private static final String COLUMN_PREGNANCY_START = "pregnancy_start";
     // assesment table
     private static final String TABLE_ASSESMENTS = "assesments";
     private static final String COLUMN_ASSESMENT_ID = "_id";
@@ -60,16 +60,16 @@ public class DBHelper extends SQLiteOpenHelper {
                 "(" + COLUMN_PREGNANCY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMN_PATIENT_FK + " INTEGER," +
                 COLUMN_PREGNANCY_ALERT + " INTEGER," +
-                COLUMN_PREGNANCY_WEEK + " INTEGER," +
+                COLUMN_PREGNANCY_START + " TEXT," +
                 "FOREIGN KEY(" + COLUMN_PATIENT_FK + ") " +
                 "REFERENCES " + TABLE_PATIENTS + "(" + COLUMN_PATIENT_ID + "))";
 
         String CREATE_ASSESMENTES_TABLE = "CREATE TABLE " + TABLE_ASSESMENTS +
                 "(" + COLUMN_ASSESMENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMN_PREGNANCY_FK + " INTEGER," +
-                COLUMN_STARTDATE + " INTEGER," +
-                COLUMN_ENDDATE + " INTEGER," +
-                COLUMN_PREASSURE + " INTEGER" +
+                COLUMN_STARTDATE + " TEXT," +
+                COLUMN_ENDDATE + " TEXT," +
+                COLUMN_PREASSURE + " INTEGER," +
                 "FOREIGN KEY(" + COLUMN_PREGNANCY_FK + ") " +
                 "REFERENCES " + TABLE_ASSESMENTS + "(" + COLUMN_ASSESMENT_ID + "))";
 
