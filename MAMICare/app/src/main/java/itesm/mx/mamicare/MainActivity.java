@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
             i.putExtra("pregweek", p.getPregnancyWeek());
             i.putExtra("bday", p.getBirthday());
             i.putExtra("lastcheck", p.getLastCheck());
-            i.putExtra("img", p.getPhotoID());
+            i.putExtra("img", p.getPhoto_path());
 
             startActivity(i);
         }
@@ -76,7 +76,6 @@ public class MainActivity extends Activity {
                 Intent intent;
 
                 if (btn_Addpatient.isPressed()){
-                    // TODO CHANGE THE ACTION OF THIS BUTTON
                     intent = new Intent(MainActivity.this, NewPatient.class);
                     startActivity(intent); // Go to activity to add new patient
                 }
@@ -92,16 +91,16 @@ public class MainActivity extends Activity {
     private void initializeData(){
         pacientes = new ArrayList<>();
         pacientes.add(new Patient("Rosa Jimenez", "Semana de emabarazo actual: 12",
-                R.drawable.photorosa, "Ultima revisión: 10 de agosto 2015"));
+                null, "Ultima revisión: 10 de agosto 2015"));
 
         pacientes.add(new Patient("Brenda Hernandez", "Semana de emabarazo actual:30",
-                R.drawable.emma, "Ultima revisión: 15 de agosto 2015"));
+                null, "Ultima revisión: 15 de agosto 2015"));
 
         pacientes.add(new Patient("Teresa Ramirez", "Semana de emabarazo actual: 4",
-                R.drawable.lavery, "Ultima revisión: 1 de septiembre 2015"));
+                null, "Ultima revisión: 1 de septiembre 2015"));
 
         pacientes.add(new Patient("Guadalupe Gonzales", "Semana de emabarazo actual: 20",
-                R.drawable.lillie, "Ultima revisión: 10 de septiembre 2015"));
+                null, "Ultima revisión: 10 de septiembre 2015"));
     }
 
 

@@ -53,7 +53,7 @@ public class PatientListAdapter extends ArrayAdapter<Patient> {
         name.setText(patient.getName());
         pregWeek.setText(patient.getPregnancyWeek());
         lastCheck.setText(patient.getLastCheck());
-        profilePic.setImageResource(patient.getPhotoID());
+        //profilePic.setImageResource(patient.getPhoto_path()); TODO FIX
 
         return row;
     }
