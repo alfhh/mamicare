@@ -1,4 +1,4 @@
-package itesm.mx.mamicare;
+package itesm.mx.mamicare_db_testing;
 
 /**
  * Created by SergioJesúsCorderoBa on 11/20/2015.
@@ -13,6 +13,19 @@ public class Assesment {
     public Assesment(int id, int pregnancy_id, String start_date, String end_date, int blood_preassure) {
         this.id = id;
         this.pregnancy_id = pregnancy_id;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.blood_preassure = blood_preassure;
+    }
+
+    public Assesment(int pregnancy_id, String start_date, String end_date, int blood_preassure) {
+        this.pregnancy_id = pregnancy_id;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.blood_preassure = blood_preassure;
+    }
+
+    public Assesment(String start_date, String end_date, int blood_preassure) {
         this.start_date = start_date;
         this.end_date = end_date;
         this.blood_preassure = blood_preassure;

@@ -1,4 +1,4 @@
-package itesm.mx.mamicare;
+package itesm.mx.mamicare_db_testing;
 
 /**
  * Created by SergioJesúsCorderoBa on 11/2/2015.
@@ -8,16 +8,22 @@ public class Pregnancy {
     private int id;
     private int patient_id;
     private int alert;
-    private int pregnancyStart;
+    private String pregnancyStart;
 
-    public Pregnancy(int id, int patient_id, int alert, int pregnancyStart) {
+    public Pregnancy(int id, int patient_id, int alert, String pregnancyStart) {
         this.id = id;
         this.patient_id = patient_id;
         this.alert = alert;
         this.pregnancyStart = pregnancyStart;
     }
 
-    public Pregnancy(int alert, int pregnancyStart) {
+    public Pregnancy(int patient_id, int alert, String pregnancyStart) {
+        this.patient_id = patient_id;
+        this.alert = alert;
+        this.pregnancyStart = pregnancyStart;
+    }
+
+    public Pregnancy(int alert, String pregnancyStart) {
         this.alert = alert;
         this.pregnancyStart = pregnancyStart;
     }
@@ -46,11 +52,11 @@ public class Pregnancy {
         this.alert = alert;
     }
 
-    public int getPregnancyStart() {
+    public String getPregnancyStart() {
         return pregnancyStart;
     }
 
-    public void setPregnancyStart(int pregnancyStart) {
+    public void setPregnancyStart(String pregnancyStart) {
         this.pregnancyStart = pregnancyStart;
     }
 }

@@ -1,4 +1,4 @@
-package itesm.mx.mamicare;
+package itesm.mx.mamicare_db_testing;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,7 +9,7 @@ import android.util.Log;
  * Created by SergioJesúsCorderoBa on 11/2/2015.
  */
 public class DBHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 6;
     private static final String DATABASE_NAME = "mamicare.db";
     // patients table
     private static final String TABLE_PATIENTS = "patients";
@@ -56,6 +56,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 COLUMN_PATIENT_BIRTHDAY + " DATE," +
                 COLUMN_PATIENT_PHOTO + " TEXT)";
 
+
         String CREATE_PREGNANCIES_TABLE = "CREATE TABLE " + TABLE_PREGNANCIES +
                 "(" + COLUMN_PREGNANCY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMN_PATIENT_FK + " INTEGER," +
@@ -63,6 +64,14 @@ public class DBHelper extends SQLiteOpenHelper {
                 COLUMN_PREGNANCY_START + " TEXT," +
                 "FOREIGN KEY(" + COLUMN_PATIENT_FK + ") " +
                 "REFERENCES " + TABLE_PATIENTS + "(" + COLUMN_PATIENT_ID + "))";
+
+        /*
+        String CREATE_PREGNANCIES_TABLE = "CREATE TABLE " + TABLE_PREGNANCIES +
+                "(" + COLUMN_PREGNANCY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                COLUMN_PATIENT_FK + " INTEGER," +
+                COLUMN_PREGNANCY_ALERT + " INTEGER," +
+                COLUMN_PREGNANCY_START + " TEXT)";
+                */
 
         String CREATE_ASSESMENTES_TABLE = "CREATE TABLE " + TABLE_ASSESMENTS +
                 "(" + COLUMN_ASSESMENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -91,6 +100,8 @@ public class DBHelper extends SQLiteOpenHelper {
                     ", which will destroy all old data");
 
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_PATIENTS);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_PREGNANCIES);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_ASSESMENTS);
             onCreate(db);
         }
     }

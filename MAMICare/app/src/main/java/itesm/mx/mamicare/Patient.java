@@ -1,4 +1,7 @@
-package itesm.mx.mamicare;
+package itesm.mx.mamicare_db_testing;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Alfredo Hinojosa on 10/25/2015.

@@ -1,4 +1,4 @@
-package itesm.mx.mamicare;
+package itesm.mx.mamicare_db_testing;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -155,11 +155,12 @@ public class DBOperations {
     ///////////////////////////////////////////
     // Pregnancy operations
     public int addPregnancy(Patient patient, Pregnancy pregnancy){
+        int fk = patient.getId();
         db = dbHelper.getWritableDatabase();
         long pregnancyId = 0;
         try {
             ContentValues values = new ContentValues();
-            values.put(COLUMN_PATIENT_FK, patient.getId());
+            values.put(COLUMN_PATIENT_FK, fk);
             values.put(COLUMN_PREGNANCY_ALERT, pregnancy.getAlert());
             values.put(COLUMN_PREGNANCY_START, pregnancy.getPregnancyStart());
 
@@ -209,7 +210,7 @@ public class DBOperations {
                         Integer.parseInt(cursor.getString(0)),
                         Integer.parseInt(cursor.getString(1)),
                         Integer.parseInt(cursor.getString(2)),
-                        Integer.parseInt(cursor.getString(3)));
+                        cursor.getString(3));
             }
         } catch (SQLiteException e) {
             Log.d(TAG, "Error while trying to get pregnancy number " + pregnancyId);
@@ -224,18 +225,18 @@ public class DBOperations {
 
         db = dbHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-        List<Pregnancy> pregnancies = null;
+        List<Pregnancy> pregnancies = new ArrayList<>();
         try {
-            do {
+            while (cursor.moveToNext()){
                 //fetch pregnancies from db
                 Pregnancy pregnancy = new Pregnancy (
                         Integer.parseInt(cursor.getString(0)),
                         Integer.parseInt(cursor.getString(1)),
                         Integer.parseInt(cursor.getString(2)),
-                        Integer.parseInt(cursor.getString(3)));
+                        cursor.getString(3));
                 //adding to list
                 pregnancies.add(pregnancy);
-            } while (cursor.moveToNext());
+            }
         } catch (SQLiteException e) {
             Log.d(TAG, "Error while trying to get all pregnancies from patient number " + patientId);
         }
@@ -244,15 +245,16 @@ public class DBOperations {
 
     }
 
-    public int getPregnanciesCount(Patient patient) {
+    public int getPregnanciesCountFromPatient(Patient patient) {
         int patientId = patient.getId();
         String query = "SELECT * FROM " + TABLE_PREGNANCIES + " WHERE " + COLUMN_PATIENT_FK + " = " + Integer.toString(patientId);
 
         db = dbHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
+        int count = cursor.getCount();
         cursor.close();
 
-        return cursor.getCount();
+        return count;
     }
     ///////////////////////////////////////////////
 
@@ -268,7 +270,7 @@ public class DBOperations {
             values.put(COLUMN_ASSESMENTS_ENDDATE, assesment.getEnd_date());
             values.put(COLUMN_ASSESMENTS_PREASSURE, assesment.getBlood_preassure());
 
-            assesmentId = db.insert(TABLE_PREGNANCIES, null, values);
+            assesmentId = db.insert(TABLE_ASSESMENTS, null, values);
         } catch (SQLiteException e) {
             //if db cannot be opened
             Log.d(TAG, "Error while trying to add assesment to database");
@@ -330,11 +332,11 @@ public class DBOperations {
 
         db = dbHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-        List<Assesment> assesments = null;
+        List<Assesment> assesments = new ArrayList<>();
         try {
-            do {
+            while (cursor.moveToNext()) {
                 //fetch pregnancies from db
-                Assesment assesment = new Assesment (
+                Assesment assesment = new Assesment(
                         Integer.parseInt(cursor.getString(0)),
                         Integer.parseInt(cursor.getString(1)),
                         cursor.getString(2),
@@ -342,7 +344,7 @@ public class DBOperations {
                         Integer.parseInt(cursor.getString(4)));
                 //adding to list
                 assesments.add(assesment);
-            } while (cursor.moveToNext());
+            }
         } catch (SQLiteException e) {
             Log.d(TAG, "Error while trying to get all assesments from pregnancy number " + pregnancyId);
         }
@@ -357,9 +359,10 @@ public class DBOperations {
 
         db = dbHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
+        int count = cursor.getCount();
         cursor.close();
 
-        return cursor.getCount();
+        return count;
     }
     ///////////////////////////////////////////////
 
