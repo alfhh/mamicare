@@ -97,29 +97,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <!-- PREGNANCY WEEKS -->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/tv_PregWeek"
-                        android:textSize="24sp"
-                        android:text="@string/askPregWeek"
-                        />
-
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:hint="@string/pregnant_week"
-                        android:textSize="24sp"
-                        android:id="@+id/et_PregnancyWeek"
-                        android:layout_column="2" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
                     <!-- PATIENT BIRTHDAY-->
                     <TextView
                         android:layout_width="wrap_content"
@@ -147,11 +124,11 @@
                     android:layout_height="match_parent">
 
                     <!-- PATIENT BIRTHDAY -->
+
                     <DatePicker
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/datePicker"
-                        android:layout_column="0" />
+                        android:id="@+id/datePicker" />
                 </TableRow>
 
             </TableLayout>

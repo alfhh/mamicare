@@ -43,7 +43,6 @@ public class DBOperations {
             */
             //inserting known values, remember id is automatically inserted
             values.put(COLUMN_PATIENT_NAME, patient.getName());
-            values.put(COLUMN_PATIENT_LAST_CHECK, patient.getLastCheck());
             values.put(COLUMN_PATIENT_BIRTHDAY, patient.getBirthday());
             values.put(COLUMN_PATIENT_PHOTO, patient.getPhoto_path());
 
