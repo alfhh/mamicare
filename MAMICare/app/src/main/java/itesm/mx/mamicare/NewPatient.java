@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -27,22 +28,25 @@ public class NewPatient extends Activity {
     Button btnSubmit; // Button to save new patient
     Button btnCancel; // Cancel the submission
     DatePicker datepick; // DatePicker
+    DBOperations dbo; // Database API
     ImageView imvProfile; // ImageView profile
     private File imageFile; // To set the destination of the photo
     String imagePath = ""; // Path referencing the imvProfile
     static final int REQUEST_IMAGE_CAPTURE = 1; // Code for picture intent
+    EditText etName; // EditText of the patient's name
+    EditText etAddress; // EditText of the patient's address
 
     /**
      * Used to return the date selected by the user in a correct format to handle
      * in the data base.
      * @return formated string date
      */
-    String getDate(){
+    String getBirthDate(){
 
         String date;
-        date = String.valueOf(datepick.getDayOfMonth()); //TODO fix starting @ zero
+        date = String.valueOf(datepick.getDayOfMonth());
         date += "-";
-        date += String.valueOf(datepick.getMonth());
+        date += String.valueOf(datepick.getMonth() + 1);
         date += "-";
         date += String.valueOf(datepick.getYear());
         return date;
@@ -79,10 +83,19 @@ public class NewPatient extends Activity {
         }
     }
 
-    public boolean submitPatient(String name, String address, String bday ){
+    /**
+     * Method that makes the insert in the database to add a new patient
+     * @param name of the patient
+     * @param address of the patient
+     * @return a boolean which is true if the insert is correct
+     */
+    public boolean submitPatient(String name, String address){
         boolean result = false;
 
-        // TODO ADD THIS TO COMMIT
+        Patient p = new Patient(name, address, null, getBirthDate(), imagePath);
+        if(dbo.addPatient(p) != -1) {
+            result = true; // patient correctly added
+        }
 
         return result;
     }
@@ -92,11 +105,16 @@ public class NewPatient extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_patient);
 
+        // Initialize DB connection
+        dbo = new DBOperations(getApplicationContext());
+
         // Bind views
         btnSubmit = (Button) findViewById(R.id.btn_AddNewPatient);
         btnCancel = (Button) findViewById(R.id.btn_CancelNewPatient);
         datepick = (DatePicker) findViewById(R.id.datePicker);
         imvProfile = (ImageView) findViewById(R.id.imv_PatientPhoto);
+        etName = (EditText) findViewById(R.id.et_PatientName);
+        etAddress = (EditText) findViewById(R.id.et_PatientAddress);
 
         OnClickListener listener = new OnClickListener() {
 
@@ -104,8 +122,29 @@ public class NewPatient extends Activity {
             public void onClick(View v) {
 
                 if (btnSubmit.isPressed()){
-                    //Log.d("Name", )
-                    //finish();
+                    String name = etName.getText().toString();
+                    String address = etAddress.getText().toString();
+
+                    if(!name.matches("") && !address.matches("")){ // Checks for empty values
+                        if(submitPatient(name, address)){
+                            Toast.makeText(getApplicationContext(),
+                                    "Paciente agregada correctamente", Toast.LENGTH_LONG).show();
+                        } else { // DB insert not correct
+                            Toast.makeText(getApplicationContext(),
+                                    "Error: paciente no agregada", Toast.LENGTH_LONG).show();
+                        }
+
+                    } else { // Informs the user which ET is empty
+                        if(name.matches("")){
+                            Toast.makeText(getApplicationContext(), "Falta llenar nombre",
+                                    Toast.LENGTH_LONG).show();
+                        } else if(address.matches("")){
+                            Toast.makeText(getApplicationContext(), "Falta llenar dirección",
+                                    Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+
                 } else if(btnCancel.isPressed()){
                     Toast.makeText(getApplication(), "Registro cancelado",
                             Toast.LENGTH_SHORT).show();

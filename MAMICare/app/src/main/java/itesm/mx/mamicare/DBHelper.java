@@ -15,6 +15,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String TABLE_PATIENTS = "patients";
     private static final String COLUMN_PATIENT_ID = "_id";
     private static final String COLUMN_PATIENT_NAME = "name";
+    private static final String COLUMN_PATIENT_ADDRESS = "address";
     private static final String COLUMN_PATIENT_LAST_CHECK = "lastC";
     private static final String COLUMN_PATIENT_BIRTHDAY = "birthday";
     private static final String COLUMN_PATIENT_PHOTO = "photo_path";
@@ -52,6 +53,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String CREATE_PRODUCTS_TABLE = "CREATE TABLE " + TABLE_PATIENTS +
                 "(" + COLUMN_PATIENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMN_PATIENT_NAME + " TEXT," +
+                COLUMN_PATIENT_ADDRESS + " TEXT, " +
                 COLUMN_PATIENT_LAST_CHECK + " DATE," +
                 COLUMN_PATIENT_BIRTHDAY + " DATE," +
                 COLUMN_PATIENT_PHOTO + " TEXT)";

@@ -24,6 +24,7 @@ public class DBOperations {
     private static final String TABLE_PATIENTS = "patients";
     private static final String COLUMN_PATIENT_ID = "_id";
     private static final String COLUMN_PATIENT_NAME = "name";
+    private static final String COLUMN_PATIENT_ADDRESS = "address";
     private static final String COLUMN_PATIENT_LAST_CHECK = "lastC";
     private static final String COLUMN_PATIENT_BIRTHDAY = "birthday";
     private static final String COLUMN_PATIENT_PHOTO = "photo_path";
@@ -43,6 +44,8 @@ public class DBOperations {
             */
             //inserting known values, remember id is automatically inserted
             values.put(COLUMN_PATIENT_NAME, patient.getName());
+            values.put(COLUMN_PATIENT_ADDRESS, patient.getAddress());
+            values.put(COLUMN_PATIENT_LAST_CHECK, patient.getLastCheck());
             values.put(COLUMN_PATIENT_BIRTHDAY, patient.getBirthday());
             values.put(COLUMN_PATIENT_PHOTO, patient.getPhoto_path());
 

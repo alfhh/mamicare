@@ -9,21 +9,20 @@ class Patient {
     private String name;
     private String birthday;
     private String address;
-    private String pregnancyWeek;
     private String lastCheck;
     private String photo_path;
 
-    Patient(String name, String week, String photo, String lastC) {
+    Patient(String name, String address, String lastC, String bday, String photo) {
         this.name = name;
-        this.pregnancyWeek = week;
-        this.photo_path = photo;
+        this.address = address;
         this.lastCheck = lastC;
+        this.birthday = bday;
+        this.photo_path = photo;
     }
 
     Patient(int id, String name, String week, String photo, String lastC) {
         this.id = id;
         this.name = name;
-        this.pregnancyWeek = week;
         this.photo_path = photo;
         this.lastCheck = lastC;
     }
@@ -76,11 +75,4 @@ class Patient {
         this.address = address;
     }
 
-    public String getPregnancyWeek() {
-        return pregnancyWeek;
-    }
-
-    public void setPregnancyWeek(String pregnancyWeek) {
-        this.pregnancyWeek = pregnancyWeek;
-    }
 }

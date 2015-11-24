@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
             i = new Intent(MainActivity.this, PatientProfile.class);
             i.putExtra("name", p.getName());
             i.putExtra("address", p.getAddress());
-            i.putExtra("pregweek", p.getPregnancyWeek());
+            //i.putExtra("pregweek", p.getPregnancyWeek());
             i.putExtra("bday", p.getBirthday());
             i.putExtra("lastcheck", p.getLastCheck());
             i.putExtra("img", p.getPhoto_path());
@@ -90,17 +90,17 @@ public class MainActivity extends Activity {
      */
     private void initializeData(){
         pacientes = new ArrayList<>();
-        pacientes.add(new Patient("Rosa Jimenez", "Semana de emabarazo actual: 12",
-                null, "Ultima revisión: 10 de agosto 2015"));
+        pacientes.add(new Patient("Rosa Jimenez", "TLC" , "Ultima revisión: 10 de agosto 2015",
+                "9 de septiembre 1994", null));
 
-        pacientes.add(new Patient("Brenda Hernandez", "Semana de emabarazo actual:30",
-                null, "Ultima revisión: 15 de agosto 2015"));
+        pacientes.add(new Patient("Brenda Jimenez", "TLC" , "Ultima revisión: 10 de enero 2015",
+                "12 de febrero 1984", null));
 
-        pacientes.add(new Patient("Teresa Ramirez", "Semana de emabarazo actual: 4",
-                null, "Ultima revisión: 1 de septiembre 2015"));
+        pacientes.add(new Patient("Alma Jimenez", "TLC" , "Ultima revisión: 10 de febrero 2015",
+                "11 de septiembre 1974", null));
 
-        pacientes.add(new Patient("Guadalupe Gonzales", "Semana de emabarazo actual: 20",
-                null, "Ultima revisión: 10 de septiembre 2015"));
+        pacientes.add(new Patient("Luisa Jimenez", "TLC" , "Ultima revisión: 10 de marzo 2015",
+                "9 de octubre 1992", null));
     }
 
 

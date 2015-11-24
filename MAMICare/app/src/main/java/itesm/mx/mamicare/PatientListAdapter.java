@@ -51,7 +51,7 @@ public class PatientListAdapter extends ArrayAdapter<Patient> {
         // Load data
         Patient patient = adapterList.get(position);
         name.setText(patient.getName());
-        pregWeek.setText(patient.getPregnancyWeek());
+        //pregWeek.setText(patient.getPregnancyWeek());
         lastCheck.setText(patient.getLastCheck());
         //profilePic.setImageResource(patient.getPhoto_path()); TODO FIX
 
