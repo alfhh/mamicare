@@ -79,6 +79,14 @@ public class NewPatient extends Activity {
         }
     }
 
+    public boolean submitPatient(String name, String address, String bday ){
+        boolean result = false;
+
+
+
+        return result;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
