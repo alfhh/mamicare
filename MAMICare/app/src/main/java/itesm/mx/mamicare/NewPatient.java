@@ -82,7 +82,7 @@ public class NewPatient extends Activity {
     public boolean submitPatient(String name, String address, String bday ){
         boolean result = false;
 
-
+        // TODO ADD THIS TO COMMIT
 
         return result;
     }
