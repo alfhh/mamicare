@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,7 +30,7 @@ public class NewPatient extends Activity {
     DBOperations dbo; // Database API
     ImageView imvProfile; // ImageView profile
     private File imageFile; // To set the destination of the photo
-    String imagePath = ""; // Path referencing the imvProfile
+    String imagePath = null; // Path referencing the imvProfile
     static final int REQUEST_IMAGE_CAPTURE = 1; // Code for picture intent
     EditText etName; // EditText of the patient's name
     EditText etAddress; // EditText of the patient's address
@@ -127,8 +126,8 @@ public class NewPatient extends Activity {
 
                     if(!name.matches("") && !address.matches("")){ // Checks for empty values
                         if(submitPatient(name, address)){
-                            Toast.makeText(getApplicationContext(),
-                                    "Paciente agregada correctamente", Toast.LENGTH_LONG).show();
+                            setResult(RESULT_OK);
+                            finish(); // Return to MainActivity
                         } else { // DB insert not correct
                             Toast.makeText(getApplicationContext(),
                                     "Error: paciente no agregada", Toast.LENGTH_LONG).show();

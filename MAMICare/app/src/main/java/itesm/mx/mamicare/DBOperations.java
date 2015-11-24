@@ -92,11 +92,12 @@ public class DBOperations {
         try {
             if (cursor.moveToFirst()) {
                 patient = new Patient (
-                        Integer.parseInt(cursor.getString(0)),
+                        cursor.getInt(0),
                         cursor.getString(1),
                         cursor.getString(2),
                         cursor.getString(3),
-                        cursor.getString(4));
+                        cursor.getString(4),
+                        cursor.getString(5));
             }
         } catch (SQLiteException e) {
             Log.d(TAG, "Error while trying to get patient number " + patientId);
@@ -113,12 +114,13 @@ public class DBOperations {
         List<Patient> patients = new ArrayList<>();
         try {
             while(cursor.moveToNext()){
-                Patient patient = new Patient (
-                        Integer.parseInt(cursor.getString(0)),
+                Patient  patient = new Patient (
+                        cursor.getInt(0),
                         cursor.getString(1),
                         cursor.getString(2),
                         cursor.getString(3),
-                        cursor.getString(4));
+                        cursor.getString(4),
+                        cursor.getString(5));
                 //adding to list
                 patients.add(patient);
             }

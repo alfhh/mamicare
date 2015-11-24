@@ -20,11 +20,13 @@ class Patient {
         this.photo_path = photo;
     }
 
-    Patient(int id, String name, String week, String photo, String lastC) {
+    Patient(int id, String name, String address, String lastC, String bday, String photo) {
         this.id = id;
         this.name = name;
-        this.photo_path = photo;
+        this.address = address;
         this.lastCheck = lastC;
+        this.birthday = bday;
+        this.photo_path = photo;
     }
 
     public int getId() {

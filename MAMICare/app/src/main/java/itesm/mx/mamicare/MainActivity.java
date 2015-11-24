@@ -9,17 +9,20 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends Activity {
 
+    DBOperations dbo; // Database API
+    final int NEW_PATIENT = 1;
     List<Patient> pacientes; // List of the current patients
     ListView pacientList; // ListView with patients
     ImageButton btn_Addpatient; // Used to add a new patient
     Patient selectedPatient; // Used for getting the view
-    PatientListAdapter patientAdapter;
+    PatientListAdapter patientAdapter; // Adapter used for the ListView of Cards
 
     /**
      * Goes to PatientProfile activity
@@ -32,14 +35,52 @@ public class MainActivity extends Activity {
             i = new Intent(MainActivity.this, PatientProfile.class);
             i.putExtra("name", p.getName());
             i.putExtra("address", p.getAddress());
-            //i.putExtra("pregweek", p.getPregnancyWeek());
-            i.putExtra("bday", p.getBirthday());
             i.putExtra("lastcheck", p.getLastCheck());
+            i.putExtra("bday", p.getBirthday());
             i.putExtra("img", p.getPhoto_path());
 
             startActivity(i);
         }
+    }
 
+    /**
+     * Method that reloads all the patients registered in the database and then updates the view
+     * sending the new List to the adapter
+     * @return a List of patients
+     */
+    public void reloadData(){
+        pacientes = dbo.getAllPatients();
+        patientAdapter.getData().clear();
+        patientAdapter.getData().addAll(pacientes);
+        patientAdapter.notifyDataSetChanged();
+    }
+
+    /**
+     * Method that handles the returning values of the intents
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK){
+            switch (requestCode){
+                case 1: // Returns after adding a new patient
+                    Toast.makeText(getApplicationContext(), "Paciente agregada correctamente",
+                            Toast.LENGTH_SHORT).show();
+                    reloadData();
+                    break;
+            }
+        } else if (resultCode == RESULT_CANCELED) {
+            switch (requestCode){
+                case 1: // Canceled new patient
+                    Toast.makeText(getApplicationContext(), "Operación Cancelada",
+                            Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
     }
 
     @Override
@@ -47,10 +88,13 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Database connection
+        dbo = new DBOperations(getApplicationContext());
+
         // Bind views
         pacientList = (ListView) findViewById(R.id.lvPatient);
         btn_Addpatient = (ImageButton) findViewById(R.id.btnNewPatient);
-        initializeData(); // Load the sample data
+        pacientes = dbo.getAllPatients(); // Load the actual patients in the database
         patientAdapter = new PatientListAdapter(getApplicationContext(), R.layout.item, pacientes);
         pacientList.setAdapter(patientAdapter);
 
@@ -77,31 +121,11 @@ public class MainActivity extends Activity {
 
                 if (btn_Addpatient.isPressed()){
                     intent = new Intent(MainActivity.this, NewPatient.class);
-                    startActivity(intent); // Go to activity to add new patient
+                    startActivityForResult(intent, NEW_PATIENT); // Go to activity to add new patient
                 }
             }
         };
         // Register the buttons to the listener
         btn_Addpatient.setOnClickListener(listener);
     }
-
-    /**
-     * Initialize dummy data
-     */
-    private void initializeData(){
-        pacientes = new ArrayList<>();
-        pacientes.add(new Patient("Rosa Jimenez", "TLC" , "Ultima revisión: 10 de agosto 2015",
-                "9 de septiembre 1994", null));
-
-        pacientes.add(new Patient("Brenda Jimenez", "TLC" , "Ultima revisión: 10 de enero 2015",
-                "12 de febrero 1984", null));
-
-        pacientes.add(new Patient("Alma Jimenez", "TLC" , "Ultima revisión: 10 de febrero 2015",
-                "11 de septiembre 1974", null));
-
-        pacientes.add(new Patient("Luisa Jimenez", "TLC" , "Ultima revisión: 10 de marzo 2015",
-                "9 de octubre 1992", null));
-    }
-
-
 }

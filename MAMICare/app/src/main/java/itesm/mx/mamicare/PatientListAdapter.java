@@ -1,6 +1,8 @@
 package itesm.mx.mamicare;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,9 +53,19 @@ public class PatientListAdapter extends ArrayAdapter<Patient> {
         // Load data
         Patient patient = adapterList.get(position);
         name.setText(patient.getName());
-        //pregWeek.setText(patient.getPregnancyWeek());
-        lastCheck.setText(patient.getLastCheck());
-        //profilePic.setImageResource(patient.getPhoto_path()); TODO FIX
+        pregWeek.setText("Embarazo no registrado"); // TODO FIX
+        lastCheck.setText("No se ha realizado ningun chequeo"); // TODO FIX
+
+        // Set Patient image
+        if(patient.getPhoto_path() != null){
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 4;
+            Bitmap imageBitmap = BitmapFactory.decodeFile(patient.getPhoto_path(), options);
+            profilePic.setImageBitmap(imageBitmap);
+        } else { // The patient has no photo
+            profilePic.setImageResource(R.drawable.nophoto);
+        }
+
 
         return row;
     }

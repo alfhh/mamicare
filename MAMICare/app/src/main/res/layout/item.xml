@@ -52,7 +52,7 @@
                 android:layout_toRightOf="@+id/imv_PatientPhoto"
                 android:layout_below="@+id/tv_PatientName"
                 android:textSize="24sp"
-                android:text="@string/pregnant_week"
+                android:text="@string/uPregWeek"
                 android:textColor="#212121"/>
 
             <TextView
