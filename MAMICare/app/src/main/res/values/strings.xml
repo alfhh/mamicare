@@ -58,5 +58,6 @@
         <item>Noviembre</item>
         <item>Diciembre</item>
     </string-array>
+    <string name="title_activity_pregnancy_profile">PregnancyProfile</string>
 
 </resources>

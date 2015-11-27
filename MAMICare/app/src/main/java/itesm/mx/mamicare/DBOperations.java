@@ -29,9 +29,22 @@ public class DBOperations {
     private static final String COLUMN_PATIENT_BIRTHDAY = "birthday";
     private static final String COLUMN_PATIENT_PHOTO = "photo_path";
 
+    // pregnancy table
+    private static final String TABLE_PREGNANCIES = "pregnancies";
+    private static final String COLUMN_PREGNANCY_ID = "_id";
+    private static final String COLUMN_PATIENT_FK = "patinet_id";
+    private static final String COLUMN_PREGNANCY_ALERT = "alert";
+    private static final String COLUMN_PREGNANCY_START = "pregnancy_start";
+
 
     ////////////////////////////////////////
     // Patient operations
+
+    /**
+     * Adds a patient to the database
+     * @param patient
+     * @return the id of the patient
+     */
     public int addPatient(Patient patient){
         long insertedId=-1;
         db = dbHelper.getWritableDatabase();
@@ -82,6 +95,11 @@ public class DBOperations {
         return result;
     }
 
+    /**
+     * Method used to find a patient in the data base and return an object of type patient
+     * @param patientId
+     * @return the found patient, if not a null object
+     */
     public Patient findPatient(int patientId){
         String query = "SELECT * FROM " + TABLE_PATIENTS +
                 " WHERE " + COLUMN_PATIENT_ID + " = \"" + patientId + "\"";
@@ -106,6 +124,10 @@ public class DBOperations {
         return patient;
     }
 
+    /**
+     * Returns an ArrayList of patients found in the database
+     * @return the List of patients
+     */
     public List<Patient> getAllPatients(){
         String query = "SELECT * FROM " + TABLE_PATIENTS;
 
@@ -141,6 +163,114 @@ public class DBOperations {
         cursor.close();
         return count;
     }
+    ///////////////////////////////////////////
+
+    ////////////////////////////////////////
+    // Pregnancy operations
+
+    public int addPregnancy(Patient patient, Pregnancy pregnancy){
+        int fk = patient.getId();
+        db = dbHelper.getWritableDatabase();
+        long pregnancyId = 0;
+        try {
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_PATIENT_FK, fk);
+            values.put(COLUMN_PREGNANCY_ALERT, pregnancy.getAlert());
+            values.put(COLUMN_PREGNANCY_START, pregnancy.getPregnancyStart());
+
+            pregnancyId = db.insert(TABLE_PREGNANCIES, null, values);
+        } catch (SQLiteException e) {
+            //if db cannot be opened
+            Log.d(TAG, "Error while trying to add pregnancy to database");
+        }
+        return (int) pregnancyId;
+    }
+
+    public boolean deletePregnancy(int pregnancyId){
+        boolean result = false;
+
+        db = dbHelper.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_PREGNANCIES +
+                " WHERE " + COLUMN_PREGNANCY_ID + " = \"" + pregnancyId + "\"";
+
+        Cursor cursor = db.rawQuery(query, null);
+        try
+        {
+            if (cursor.moveToFirst()) {
+                int id = Integer.parseInt(cursor.getString(0));
+                db.delete( TABLE_PREGNANCIES, COLUMN_PREGNANCY_ID + " = ?",
+                        new String[] {String.valueOf(id) });
+                cursor.close();
+                result = true;
+            }
+        } catch (SQLiteException e) {
+            //if db cannot be opened
+            Log.d(TAG, "Error while trying to delete pregnancy number " + pregnancyId);
+        }
+        db.close();
+        return result;
+    }
+
+    public Pregnancy findPregnancy(int pregnancyId){
+        String query = "SELECT * FROM " + TABLE_PREGNANCIES +
+                " WHERE " + COLUMN_PREGNANCY_ID + " = \"" + pregnancyId + "\"";
+
+        db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        Pregnancy pregnancy = null;
+        try {
+            if (cursor.moveToFirst()) {
+                pregnancy = new Pregnancy (
+                        Integer.parseInt(cursor.getString(0)),
+                        Integer.parseInt(cursor.getString(1)),
+                        Integer.parseInt(cursor.getString(2)),
+                        cursor.getString(3));
+            }
+        } catch (SQLiteException e) {
+            Log.d(TAG, "Error while trying to get pregnancy number " + pregnancyId);
+        }
+        db.close();
+        return pregnancy;
+    }
+
+    public List<Pregnancy> getAllPregnanciesFromPatient(Patient patient){
+        int patientId = patient.getId();
+        String query = "SELECT * FROM " + TABLE_PREGNANCIES + " WHERE " + COLUMN_PATIENT_FK + " = " + Integer.toString(patientId);
+
+        db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        List<Pregnancy> pregnancies = new ArrayList<>();
+        try {
+            while (cursor.moveToNext()){
+                //fetch pregnancies from db
+                Pregnancy pregnancy = new Pregnancy (
+                        Integer.parseInt(cursor.getString(0)),
+                        Integer.parseInt(cursor.getString(1)),
+                        Integer.parseInt(cursor.getString(2)),
+                        cursor.getString(3));
+                //adding to list
+                pregnancies.add(pregnancy);
+            }
+        } catch (SQLiteException e) {
+            Log.d(TAG, "Error while trying to get all pregnancies from patient number " + patientId);
+        }
+        db.close();
+        return pregnancies;
+
+    }
+
+    public int getPregnanciesCountFromPatient(Patient patient) {
+        int patientId = patient.getId();
+        String query = "SELECT * FROM " + TABLE_PREGNANCIES + " WHERE " + COLUMN_PATIENT_FK + " = " + Integer.toString(patientId);
+
+        db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        int count = cursor.getCount();
+        cursor.close();
+
+        return count;
+    }
+
     ///////////////////////////////////////////
 
     public DBOperations(Context context) {

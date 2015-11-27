@@ -28,6 +28,10 @@
             android:name=".PatientProfile"
             android:label="@string/title_activity_patient_profile" >
         </activity>
+        <activity
+            android:name=".PregnancyProfile"
+            android:label="@string/title_activity_pregnancy_profile" >
+        </activity>
     </application>
 
 </manifest>
