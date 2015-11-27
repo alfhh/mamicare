@@ -89,7 +89,7 @@
                         android:inputType="textPostalAddress"
                         android:hint="@string/person_address"
                         android:textSize="24sp"
-                        android:id="@+id/et_PatientAddress"
+                        android:id="@+id/et_PatientAddresss"
                         android:layout_column="2" />
                 </TableRow>
 
