@@ -70,8 +70,6 @@ public class NewPatient extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Toast.makeText(getApplicationContext(), "Path: " + imageFile.getAbsolutePath(),
-                    Toast.LENGTH_SHORT).show();
 
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inSampleSize = 4; // Sets the size of the photo
@@ -144,9 +142,7 @@ public class NewPatient extends Activity {
 
                     }
 
-                } else if(btnCancel.isPressed()){
-                    Toast.makeText(getApplication(), "Registro cancelado",
-                            Toast.LENGTH_SHORT).show();
+                } else if(btnCancel.isPressed()){ // Operation canceled
                             finish();
                 } else if(imvProfile.isPressed()){
 

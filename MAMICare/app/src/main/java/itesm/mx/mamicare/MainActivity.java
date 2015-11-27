@@ -33,12 +33,8 @@ public class MainActivity extends Activity {
 
         if(p != null){ // TODO CHANGE THIS WITH DB OPERATIONS
             i = new Intent(MainActivity.this, PatientProfile.class);
-            i.putExtra("name", p.getName());
-            i.putExtra("address", p.getAddress());
-            i.putExtra("lastcheck", p.getLastCheck());
-            i.putExtra("bday", p.getBirthday());
-            i.putExtra("img", p.getPhoto_path());
-
+            i.putExtra("_id", p.getId());
+            Log.d("ID OF PATIENT", ""+p.getId());
             startActivity(i);
         }
     }
