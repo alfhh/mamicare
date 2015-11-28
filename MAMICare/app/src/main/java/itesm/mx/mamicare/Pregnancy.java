@@ -9,15 +9,17 @@ public class Pregnancy {
     private int patient_id;
     private int alert;
     private String pregnancyStart;
+    private String pregnancyEnd;
 
-    public Pregnancy(int id, int patient_id, int alert, String pregnancyStart) {
+    public Pregnancy(int id, int patient_id, int alert, String pregnancyStart, String end) { // Of List
         this.id = id;
         this.patient_id = patient_id;
         this.alert = alert;
         this.pregnancyStart = pregnancyStart;
+        this.pregnancyEnd = end;
     }
 
-    public Pregnancy(int patient_id, int alert, String pregnancyStart) {
+    public Pregnancy(int patient_id, int alert, String pregnancyStart) {// For creating a record
         this.patient_id = patient_id;
         this.alert = alert;
         this.pregnancyStart = pregnancyStart;
@@ -26,6 +28,14 @@ public class Pregnancy {
     public Pregnancy(int alert, String pregnancyStart) {
         this.alert = alert;
         this.pregnancyStart = pregnancyStart;
+    }
+
+    public String getPregnancyEnd() {
+        return pregnancyEnd;
+    }
+
+    public void setPregnancyEnd(String pregnancyEnd) {
+        this.pregnancyEnd = pregnancyEnd;
     }
 
     public int getId() {

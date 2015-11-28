@@ -35,6 +35,7 @@ public class DBOperations {
     private static final String COLUMN_PATIENT_FK = "patinet_id";
     private static final String COLUMN_PREGNANCY_ALERT = "alert";
     private static final String COLUMN_PREGNANCY_START = "pregnancy_start";
+    private static final String COLUMN_PREGNANCY_END = "pregnancy_end";
 
 
     ////////////////////////////////////////
@@ -224,7 +225,8 @@ public class DBOperations {
                         Integer.parseInt(cursor.getString(0)),
                         Integer.parseInt(cursor.getString(1)),
                         Integer.parseInt(cursor.getString(2)),
-                        cursor.getString(3));
+                        cursor.getString(3),
+                        cursor.getString(4));
             }
         } catch (SQLiteException e) {
             Log.d(TAG, "Error while trying to get pregnancy number " + pregnancyId);
@@ -247,7 +249,8 @@ public class DBOperations {
                         Integer.parseInt(cursor.getString(0)),
                         Integer.parseInt(cursor.getString(1)),
                         Integer.parseInt(cursor.getString(2)),
-                        cursor.getString(3));
+                        cursor.getString(3),
+                        cursor.getString(4));
                 //adding to list
                 pregnancies.add(pregnancy);
             }

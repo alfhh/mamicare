@@ -19,12 +19,16 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String COLUMN_PATIENT_LAST_CHECK = "lastC";
     private static final String COLUMN_PATIENT_BIRTHDAY = "birthday";
     private static final String COLUMN_PATIENT_PHOTO = "photo_path";
+
     // pregnancy table
     private static final String TABLE_PREGNANCIES = "pregnancies";
     private static final String COLUMN_PREGNANCY_ID = "_id";
     private static final String COLUMN_PATIENT_FK = "patinet_id";
     private static final String COLUMN_PREGNANCY_ALERT = "alert";
     private static final String COLUMN_PREGNANCY_START = "pregnancy_start";
+    private static final String COLUMN_PREGNANCY_END = "pregnancy_end";
+
+
     // assesment table
     private static final String TABLE_ASSESMENTS = "assesments";
     private static final String COLUMN_ASSESMENT_ID = "_id";
@@ -63,6 +67,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 COLUMN_PATIENT_FK + " INTEGER," +
                 COLUMN_PREGNANCY_ALERT + " INTEGER," +
                 COLUMN_PREGNANCY_START + " TEXT," +
+                COLUMN_PREGNANCY_END + " TEXT," +
                 "FOREIGN KEY(" + COLUMN_PATIENT_FK + ") " +
                 "REFERENCES " + TABLE_PATIENTS + "(" + COLUMN_PATIENT_ID + "))";
 
