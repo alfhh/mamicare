@@ -10,12 +10,24 @@
     <string name="MAMICARE">MAMICARE</string>
     <string name="newPatient">Agregar nueva paciente</string>
     <string name="mainmenu">MAMICare - Menu principal</string>
+    <string name="title_activity_recycler_view">RecyclerViewActivity</string>
+    <string name="title_activity_new_patient">NewPatient</string>
+    <string name="title_activity_patient_profile">PatientProfile</string>
+    <string name="title_activity_profiles">Profiles</string>
+    <string name="title_activity_pregnancy_profile">PregnancyProfile</string>
 
     <!-- Buttons -->
     <string name="botonAgregar">Agregar registro</string>
     <string name="botonCancelar">Cancelar registro</string>
     <string name="botonNuevaRevision">Nueva revisión</string>
     <string name="botonNuevoEmbarazo">Embarazo</string>
+
+    <!-- Pregnancy -->
+    <string name="fechaInicio">Fecha de inicio de embarazo: </string>
+    <string name="semActual">Semana actual de embarazo: </string>
+    <string name="semRes">Semanas restantes: </string>
+    <string name="alertaActual">Alerta: </string>
+    <string name="fechaTermino">Fecha de termino de embarazo: </string>
 
     <!-- TextView strings -->
     <string name="menuP">Menu Principal</string>
@@ -32,32 +44,12 @@
     <string name="uAge">26 de agosto de 1992</string>
     <string name="uPregWeek">Semana de embarazo actual: 12</string>
     <string name="uLastCheck">10 de agosto 2015</string>
+    <string name="lorem">Lorem ipsum</string>
 
     <!-- Question strings -->
     <string name="person_name">Ejemplo: Rosa Jimenez</string>
     <string name="person_address">Ejemplo: Santiago Nuevo Leon</string>
     <string name="pregnant_week">Ejemplo: 16</string>
     <string name="last_check">Ultima revisión: 16 de Junio 15</string>
-    <string name="title_activity_recycler_view">RecyclerViewActivity</string>
-    <string name="title_activity_new_patient">NewPatient</string>
-    <string name="title_activity_patient_profile">PatientProfile</string>
-    <string name="title_activity_profiles">Profiles</string>
-
-    <!-- Date spinner TODO DELETE IF NOT NEEEDED -->
-    <string-array name="monthArray">
-        <item>Enero</item>
-        <item>Febrero</item>
-        <item>Marzo</item>
-        <item>Abril</item>
-        <item>Mayo</item>
-        <item>Junio</item>
-        <item>Julio</item>
-        <item>Agosto</item>
-        <item>Septiembre</item>
-        <item>Octubre</item>
-        <item>Noviembre</item>
-        <item>Diciembre</item>
-    </string-array>
-    <string name="title_activity_pregnancy_profile">PregnancyProfile</string>
 
 </resources>
