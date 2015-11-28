@@ -175,7 +175,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/botonNuevaRevision"
-                android:id="@+id/btn_AddNewCheck"
+                android:id="@+id/btn_Assesment"
                 android:elevation="10dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true" />
@@ -184,10 +184,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/botonNuevoEmbarazo"
-                android:id="@+id/btn_AddNewPregnancy"
+                android:id="@+id/btn_Pregnancy"
                 android:layout_alignParentBottom="true"
                 android:elevation="10dp"
-                android:layout_toLeftOf="@+id/btn_AddNewCheck"
+                android:layout_toLeftOf="@+id/btn_Assesment"
                 android:layout_marginRight="10dp"
                 />
 

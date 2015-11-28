@@ -15,7 +15,7 @@
     <string name="botonAgregar">Agregar registro</string>
     <string name="botonCancelar">Cancelar registro</string>
     <string name="botonNuevaRevision">Nueva revisión</string>
-    <string name="botonNuevoEmbarazo">Nuevo embarazo</string>
+    <string name="botonNuevoEmbarazo">Embarazo</string>
 
     <!-- TextView strings -->
     <string name="menuP">Menu Principal</string>
