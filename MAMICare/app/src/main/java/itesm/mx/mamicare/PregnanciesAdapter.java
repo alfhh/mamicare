@@ -15,6 +15,7 @@ import java.util.List;
 public class PregnanciesAdapter extends ArrayAdapter<Pregnancy> {
     int layoutResourceId;
     List<Pregnancy> adapterList;
+    DBOperations dbo; // Database API
 
     private Context context;
 
@@ -31,6 +32,8 @@ public class PregnanciesAdapter extends ArrayAdapter<Pregnancy> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
+        // Database connection
+        dbo = new DBOperations(context);
         View row = convertView;
 
         // convertView
@@ -57,8 +60,11 @@ public class PregnanciesAdapter extends ArrayAdapter<Pregnancy> {
         endDate.setText("Embarazo actual");
 
         // Extra dates TODO IMPLEMENT CALENDAR FUNCTIONS
-        actualWeek.setText("Semana 1");
-        remainingWeeks.setText("Faltan 39 semanas");
+
+        int weeks = dbo.getRemainingWeeks(pregnancy.getId());
+
+        actualWeek.setText("Semana " + weeks);
+        remainingWeeks.setText("Faltan " + (49 - weeks)  + " semanas");
 
         // Possible null values
         if(pregnancy.getPregnancyEnd() != null)

@@ -7,8 +7,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by SergioJesúsCorderoBa on 11/2/2015.
@@ -233,6 +238,46 @@ public class DBOperations {
         }
         db.close();
         return pregnancy;
+    }
+
+    /**
+     * Method used to get the weeks passed since the begining of the pregnancy until
+     * actual date
+     * @param pregnancyId
+     * @return integer equal to the weeks passed
+     */
+    public int getRemainingWeeks(int pregnancyId){
+        int weeks = 0;
+        String query = "SELECT * FROM " + TABLE_PREGNANCIES +
+                " WHERE " + COLUMN_PREGNANCY_ID + " = \"" + pregnancyId + "\"";
+        db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        Calendar c = Calendar.getInstance();
+        String now = df.format(c.getTime());
+        String start = "";
+
+        try{
+
+            if(cursor.moveToFirst()){
+                start = cursor.getString(3);
+            }
+
+            Date date2= df.parse(now);
+            Date date1 = df.parse(start);
+            long diff = date2.getTime() - date1.getTime(); // Get difference
+            diff = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+            diff = diff / 7;
+            weeks = (int) diff;
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch(SQLiteException e2){
+            e2.printStackTrace();
+        }
+        db.close();
+        return weeks;
     }
 
     public List<Pregnancy> getAllPregnanciesFromPatient(Patient patient){
