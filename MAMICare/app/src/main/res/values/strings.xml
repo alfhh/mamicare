@@ -62,5 +62,6 @@
     <string name="pregnant_week">Ejemplo: 16</string>
     <string name="last_check">Ultima revisión: 16 de Junio 15</string>
     <string name="title_activity_assesment_list">AssesmentList</string>
+    <string name="title_activity_new_assesment">NewAssesment</string>
 
 </resources>

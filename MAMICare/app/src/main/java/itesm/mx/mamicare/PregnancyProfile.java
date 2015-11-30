@@ -52,7 +52,7 @@ public class PregnancyProfile extends Activity {
         // Avoid errors by checking if there are any previous pregnancies
         if(dbo.getPregnanciesCountFromPatient(currentPatient) == 0){
             embarazos = new ArrayList<>();
-        } else {
+        } else { // Load data from DB
             embarazos = dbo.getAllPregnanciesFromPatient(currentPatient);
         }
 
