@@ -32,6 +32,10 @@
             android:name=".PregnancyProfile"
             android:label="@string/title_activity_pregnancy_profile" >
         </activity>
+        <activity
+            android:name=".AssesmentList"
+            android:label="@string/title_activity_assesment_list" >
+        </activity>
     </application>
 
 </manifest>

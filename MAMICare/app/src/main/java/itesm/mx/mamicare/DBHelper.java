@@ -11,7 +11,8 @@ import android.util.Log;
 public class DBHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "mamicare.db";
-    // patients table
+
+    // Patients table
     private static final String TABLE_PATIENTS = "patients";
     private static final String COLUMN_PATIENT_ID = "_id";
     private static final String COLUMN_PATIENT_NAME = "name";
@@ -20,7 +21,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String COLUMN_PATIENT_BIRTHDAY = "birthday";
     private static final String COLUMN_PATIENT_PHOTO = "photo_path";
 
-    // pregnancy table
+    // Pregnancy table
     private static final String TABLE_PREGNANCIES = "pregnancies";
     private static final String COLUMN_PREGNANCY_ID = "_id";
     private static final String COLUMN_PATIENT_FK = "patinet_id";
@@ -29,13 +30,15 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String COLUMN_PREGNANCY_END = "pregnancy_end";
 
 
-    // assesment table
+    // Assesment table
     private static final String TABLE_ASSESMENTS = "assesments";
     private static final String COLUMN_ASSESMENT_ID = "_id";
     private static final String COLUMN_PREGNANCY_FK = "pregancy_id";
-    private static final String COLUMN_STARTDATE = "start_date";
-    private static final String COLUMN_ENDDATE = "end_date";
-    private static final String COLUMN_PREASSURE = "blood_preassure";
+    private static final String COLUMN_ASSESMENT_STARTDATE = "start_date";
+    private static final String COLUMN_ASSESMENT_ENDDATE = "end_date";
+    private static final String COLUMN_ASSESMENT_HRATE = "hRate";
+    private static final String COLUMN_ASSESMENT_OXYGEN = "oxygen";
+    private static final String COLUMN_ASSESMENT_ALERT = "alert";
 
     //singleton helper
     private static DBHelper dbHelperInstance;
@@ -74,9 +77,11 @@ public class DBHelper extends SQLiteOpenHelper {
         String CREATE_ASSESMENTES_TABLE = "CREATE TABLE " + TABLE_ASSESMENTS +
                 "(" + COLUMN_ASSESMENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMN_PREGNANCY_FK + " INTEGER," +
-                COLUMN_STARTDATE + " TEXT," +
-                COLUMN_ENDDATE + " TEXT," +
-                COLUMN_PREASSURE + " INTEGER," +
+                COLUMN_ASSESMENT_STARTDATE + " TEXT," +
+                COLUMN_ASSESMENT_ENDDATE + " TEXT," +
+                COLUMN_ASSESMENT_OXYGEN + " INTEGER," +
+                COLUMN_ASSESMENT_HRATE + " INTEGER," +
+                COLUMN_ASSESMENT_ALERT + " INTEGER," +
                 "FOREIGN KEY(" + COLUMN_PREGNANCY_FK + ") " +
                 "REFERENCES " + TABLE_ASSESMENTS + "(" + COLUMN_ASSESMENT_ID + "))";
 

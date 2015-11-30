@@ -25,7 +25,7 @@ public class DBOperations {
     private SQLiteDatabase db;
     private DBHelper dbHelper;
 
-    // patients table
+    // Patients table
     private static final String TABLE_PATIENTS = "patients";
     private static final String COLUMN_PATIENT_ID = "_id";
     private static final String COLUMN_PATIENT_NAME = "name";
@@ -34,13 +34,23 @@ public class DBOperations {
     private static final String COLUMN_PATIENT_BIRTHDAY = "birthday";
     private static final String COLUMN_PATIENT_PHOTO = "photo_path";
 
-    // pregnancy table
+    // Pregnancy table
     private static final String TABLE_PREGNANCIES = "pregnancies";
     private static final String COLUMN_PREGNANCY_ID = "_id";
     private static final String COLUMN_PATIENT_FK = "patinet_id";
     private static final String COLUMN_PREGNANCY_ALERT = "alert";
     private static final String COLUMN_PREGNANCY_START = "pregnancy_start";
     private static final String COLUMN_PREGNANCY_END = "pregnancy_end";
+
+    // Assesment table
+    private static final String TABLE_ASSESMENTS = "assesments";
+    private static final String COLUMN_ASSESMENT_ID = "_id";
+    private static final String COLUMN_PREGNANCY_FK = "pregancy_id";
+    private static final String COLUMN_ASSESMENT_STARTDATE = "start_date";
+    private static final String COLUMN_ASSESMENT_ENDDATE = "end_date";
+    private static final String COLUMN_ASSESMENT_HRATE = "hRate";
+    private static final String COLUMN_ASSESMENT_OXYGEN = "oxygen";
+    private static final String COLUMN_ASSESMENT_ALERT = "alert";
 
 
     ////////////////////////////////////////
@@ -373,6 +383,122 @@ public class DBOperations {
         int patientId = patient.getId();
         String query = "SELECT * FROM " + TABLE_PREGNANCIES + " WHERE " + COLUMN_PATIENT_FK + " = "
                 + Integer.toString(patientId);
+
+        db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        int count = cursor.getCount();
+        cursor.close();
+
+        return count;
+    }
+
+    ///////////////////////////////////////////
+
+    ////////////////////////////////////////
+    // Assement operations
+
+    public int addAssesment(Pregnancy pregnancy, Assesment assesment){
+        db = dbHelper.getWritableDatabase();
+        long assesmentId = 0;
+        try {
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_PREGNANCY_FK, pregnancy.getId());
+            values.put(COLUMN_ASSESMENT_STARTDATE, assesment.getStart_date());
+            values.put(COLUMN_ASSESMENT_ENDDATE, assesment.getEnd_date());
+            values.put(COLUMN_ASSESMENT_HRATE, assesment.gethRate());
+            values.put(COLUMN_ASSESMENT_OXYGEN, assesment.getOxygen());
+            values.put(COLUMN_ASSESMENT_ALERT, assesment.getAlert());
+
+            assesmentId = db.insert(TABLE_ASSESMENTS, null, values);
+        } catch (SQLiteException e) {
+            //if db cannot be opened
+            Log.d(TAG, "Error while trying to add assesment to database");
+        }
+        return (int) assesmentId;
+    }
+
+    public boolean deleteAssesment(int assesmentId){
+        boolean result = false;
+
+        db = dbHelper.getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_ASSESMENTS +
+                " WHERE " + COLUMN_ASSESMENT_ID + " = \"" + assesmentId + "\"";
+
+        Cursor cursor = db.rawQuery(query, null);
+        try
+        {
+            if (cursor.moveToFirst()) {
+                int id = Integer.parseInt(cursor.getString(0));
+                db.delete( TABLE_ASSESMENTS, COLUMN_ASSESMENT_ID + " = ?",
+                        new String[] {String.valueOf(id) });
+                cursor.close();
+                result = true;
+            }
+        } catch (SQLiteException e) {
+            //if db cannot be opened
+            Log.d(TAG, "Error while trying to delete assesment number" + assesmentId);
+        }
+        db.close();
+        return result;
+    }
+
+    public Assesment findAssesment(int assesmentId){
+        String query = "SELECT * FROM " + TABLE_ASSESMENTS +
+                " WHERE " + COLUMN_ASSESMENT_ID + " = \"" + assesmentId + "\"";
+
+        db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        Assesment assesment = null;
+        try {
+            if (cursor.moveToFirst()) {
+                assesment = new Assesment (
+                        Integer.parseInt(cursor.getString(0)),
+                        Integer.parseInt(cursor.getString(1)),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        Integer.parseInt(cursor.getString(4)),
+                        Integer.parseInt(cursor.getString(5)),
+                        Integer.parseInt(cursor.getString(6)));
+            }
+        } catch (SQLiteException e) {
+            Log.d(TAG, "Error while trying to get assesment number " + assesmentId);
+        }
+        db.close();
+        return assesment;
+    }
+
+    public List<Assesment> getAllAssesmentsFromPregnancy(Pregnancy pregnancy){
+        int pregnancyId = pregnancy.getId();
+        String query = "SELECT * FROM " + TABLE_ASSESMENTS + " WHERE " + COLUMN_PREGNANCY_FK + " = " + Integer.toString(pregnancyId);
+
+        db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        List<Assesment> assesments = new ArrayList<>();
+        try {
+            while (cursor.moveToNext()) {
+                //fetch pregnancies from db
+                Assesment  assesment = new Assesment (
+                        Integer.parseInt(cursor.getString(0)),
+                        Integer.parseInt(cursor.getString(1)),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        Integer.parseInt(cursor.getString(4)),
+                        Integer.parseInt(cursor.getString(5)),
+                        Integer.parseInt(cursor.getString(6)));
+                //adding to list
+                assesments.add(assesment);
+            }
+        } catch (SQLiteException e) {
+            Log.d(TAG, "Error while trying to get all assesments from pregnancy number " + pregnancyId);
+        }
+        db.close();
+        return assesments;
+
+    }
+
+    public int getAssesmentsCountFromPregnancy(Pregnancy pregnancy) {
+        int pregnancyId = pregnancy.getId();
+        String query = "SELECT * FROM " + TABLE_ASSESMENTS + " WHERE " + COLUMN_PREGNANCY_FK + " = " + Integer.toString(pregnancyId);
 
         db = dbHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);

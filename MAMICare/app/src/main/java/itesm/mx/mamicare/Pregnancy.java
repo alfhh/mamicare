@@ -30,6 +30,8 @@ public class Pregnancy {
         this.pregnancyStart = pregnancyStart;
     }
 
+    // TODO IMPLEMENT CHANGES OF THE ALERT
+
     public String getPregnancyEnd() {
         return pregnancyEnd;
     }

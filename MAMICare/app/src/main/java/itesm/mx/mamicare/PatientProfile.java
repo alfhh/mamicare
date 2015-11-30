@@ -18,6 +18,7 @@ public class PatientProfile extends Activity {
     Bundle data; // Data from the intent
     Button btnPreg; // Button to handle pregnancy
     Button btnCheck; // Button to handle Assesment
+    Button btnAssesments; // Button to show the list of assesments
     DBOperations dbo; // Database API
     TextView tvUserName;
     TextView tvUserAddress;
@@ -71,6 +72,7 @@ public class PatientProfile extends Activity {
         // Bind views
         btnCheck = (Button) findViewById(R.id.btn_Assesment);
         btnPreg = (Button) findViewById(R.id.btn_Pregnancy);
+        btnAssesments = (Button) findViewById(R.id.btn_ListAssesment);
         tvUserName = (TextView) findViewById(R.id.tv_ActiveUserName);
         tvUserAddress = (TextView) findViewById(R.id.tv_ActiveUserAddress);
         tvUserPregWeek = (TextView) findViewById(R.id.tv_ActiveUserPregWeek);
@@ -109,7 +111,9 @@ public class PatientProfile extends Activity {
                     i.putExtra("_id", currentPatient.getId());
                     startActivity(i); // Go to PregnancyProfile
                 } else if(btnCheck.isPressed()){
-                    Log.d("ACTIVE PREGNANCY", dbo.findActivePregnancy(currentPatient).getPregnancyStart());
+                    // TODO IMPLEMENT GO TO CHECK
+                } else if(btnAssesments.isPressed()){
+                    // TODO GO TO LIST OF ASSESMENTS
                 }
             }
         };
@@ -117,6 +121,7 @@ public class PatientProfile extends Activity {
         // Register the buttons to the listener
         btnPreg.setOnClickListener(listener);
         btnCheck.setOnClickListener(listener);
+        btnAssesments.setOnClickListener(listener);
 
     }
 

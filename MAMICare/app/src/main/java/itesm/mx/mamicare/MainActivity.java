@@ -14,6 +14,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO ADD THE GLP V3
+
 public class MainActivity extends Activity {
 
     DBOperations dbo; // Database API

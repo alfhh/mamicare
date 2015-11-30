@@ -45,8 +45,8 @@ public class PregnanciesAdapter extends ArrayAdapter<Pregnancy> {
 
         // Bind views
         TextView startDate = (TextView) row.findViewById(R.id.tvActiveStartDate);
-        TextView actualWeek = (TextView) row.findViewById(R.id.tvActiveActualWeek);
-        TextView remainingWeeks = (TextView) row.findViewById(R.id.tvActiveRemainingWeeks);
+        TextView actualWeek = (TextView) row.findViewById(R.id.tvActiveDuration);
+        TextView remainingWeeks = (TextView) row.findViewById(R.id.tvActiveBloodP);
         TextView alert = (TextView) row.findViewById(R.id.tvActiveAlert);
         TextView endDate = (TextView) row.findViewById(R.id.tvActiveEndDate);
 

@@ -118,6 +118,7 @@ public class PregnancyProfile extends Activity {
                 dbo.endPregnancy(temp.getId());
                 dbo.addPregnancy(currentPatient, p); // <- Add to DataBase
             } else {
+                // TODO HANDLE INCORRECT VALUES, LIKE FUTURE DATES
                 dbo.addPregnancy(currentPatient, p); // <- Add to DataBase
             }
 

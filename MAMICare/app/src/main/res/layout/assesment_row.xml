@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--  Date -->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fechaRevision"
+                android:id="@+id/tvStartDate"
+                android:textColor="#212121" />
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lorem"
+                android:id="@+id/tvActiveStartDate"
+                android:textColor="#212121"/>
+        </TableRow>
+
+        <!-- Duration -->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/duracion"
+                android:id="@+id/tvDuration"
+                android:textColor="#212121"/>
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lorem"
+                android:id="@+id/tvActiveDuration"
+                android:textColor="#212121"/>
+        </TableRow>
+
+        <!-- Blood pressure -->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/presion"
+                android:id="@+id/tvBloodP"
+                android:textColor="#212121"/>
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lorem"
+                android:id="@+id/tvActiveBloodP"
+                android:textColor="#212121"/>
+        </TableRow>
+
+        <!-- Alert -->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/evaluacion"
+                android:id="@+id/tvAlert"
+                android:textColor="#212121"/>
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lorem"
+                android:id="@+id/tvActiveAlert"
+                android:textColor="#212121"/>
+        </TableRow>
+
+        <!-- End date -->
+    </TableLayout>
+
+</LinearLayout>

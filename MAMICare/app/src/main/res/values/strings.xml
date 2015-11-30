@@ -20,7 +20,8 @@
     <string name="botonAgregar">Agregar registro</string>
     <string name="botonCancelar">Cancelar registro</string>
     <string name="botonNuevaRevision">Nueva revisión</string>
-    <string name="botonNuevoEmbarazo">Embarazo</string>
+    <string name="botonListaRevision">Lista de revisiónes</string>
+    <string name="botonNuevoEmbarazo">Lista de embarazos</string>
 
     <!-- Pregnancy -->
     <string name="fechaInicio">Fecha de inicio de embarazo: </string>
@@ -28,6 +29,12 @@
     <string name="semRes">Semanas restantes: </string>
     <string name="alertaActual">Alerta: </string>
     <string name="fechaTermino">Fecha de termino de embarazo: </string>
+
+    <!-- Assesment -->
+    <string name="fechaRevision">Fecha de revisión: </string>
+    <string name="duracion">Duración: </string>
+    <string name="presion">Lectura de presión arterial:  </string>
+    <string name="evaluacion">La evaluación es: </string>
 
     <!-- TextView strings -->
     <string name="menuP">Menu Principal</string>
@@ -54,5 +61,6 @@
     <string name="person_address">Ejemplo: Santiago Nuevo Leon</string>
     <string name="pregnant_week">Ejemplo: 16</string>
     <string name="last_check">Ultima revisión: 16 de Junio 15</string>
+    <string name="title_activity_assesment_list">AssesmentList</string>
 
 </resources>
