@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class PatientProfile extends Activity {
@@ -104,6 +105,7 @@ public class PatientProfile extends Activity {
 
             @Override
             public void onClick(View v) {
+                Pregnancy p = dbo.findActivePregnancy(currentPatient);
                 Intent i;
 
                 if (btnPreg.isPressed()){
@@ -111,9 +113,23 @@ public class PatientProfile extends Activity {
                     i.putExtra("_id", currentPatient.getId());
                     startActivity(i); // Go to PregnancyProfile
                 } else if(btnCheck.isPressed()){
-
+                    if(p != null){
+                        i = new Intent(PatientProfile.this, NewAssesment.class);
+                        i.putExtra("_id", p.getId());
+                        startActivity(i); // Go to PregnancyProfile
+                    } else {
+                        Toast.makeText(getApplication(), "No existen embarazo activo, por favor crear uno",
+                                Toast.LENGTH_LONG).show();
+                    }
                 } else if(btnAssesments.isPressed()){
-
+                    if(p != null){
+                        i = new Intent(PatientProfile.this, AssesmentList.class);
+                        i.putExtra("_id", p.getId());
+                        startActivity(i); // Go to PregnancyProfile
+                    } else {
+                        Toast.makeText(getApplication(), "No existen embarazo activo, por favor crear uno",
+                                Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         };
