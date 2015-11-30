@@ -94,6 +94,8 @@ public class NewAssesment extends Activity {
     public int saveAssesment(int hr, int ox){
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
         Calendar c = Calendar.getInstance();
+        c.add(Calendar.HOUR, -1);
+        startTime.add(Calendar.HOUR, -1);
         String start = df.format(startTime.getTime());
         String end = df.format(c.getTime());
 

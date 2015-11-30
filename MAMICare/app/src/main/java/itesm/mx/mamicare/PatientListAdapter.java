@@ -10,6 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -57,7 +61,14 @@ public class PatientListAdapter extends ArrayAdapter<Patient> {
         // Load data
         Patient patient = adapterList.get(position);
         name.setText(patient.getName());
-        lastCheck.setText("No se ha realizado ningun chequeo"); // TODO IMPLEMENT
+
+        // Get date of last assesment
+        String last = dbo.getLastAssesment(patient);
+        if(last != null) {
+            lastCheck.setText("Fecha de ultima revisión: " + last);
+        } else {
+            lastCheck.setText("No existen revisiones previas");
+        }
 
         // Get active pregnancy
         Pregnancy p = dbo.findActivePregnancy(patient);

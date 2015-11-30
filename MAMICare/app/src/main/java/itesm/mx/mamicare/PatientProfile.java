@@ -41,8 +41,9 @@ public class PatientProfile extends Activity {
     public void reloadData(){
 
         // Get date of last assesment
-        if(currentPatient.getLastCheck() != null) { // TODO FIX last check
-            tvUserLastCheck.setText(currentPatient.getLastCheck());
+        String last = dbo.getLastAssesment(currentPatient);
+        if(last != null) {
+            tvUserLastCheck.setText("Fecha de ultima revisión: " + last);
         } else {
             tvUserLastCheck.setText("No existen revisiones previas");
         }
@@ -60,8 +61,6 @@ public class PatientProfile extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_profile);
-
-        Log.d("ON CREATE", "--------------------> ON CREATE PATIENT");
 
         // Database connection
         dbo = new DBOperations(getApplicationContext());

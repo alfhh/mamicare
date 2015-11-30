@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -469,6 +470,46 @@ public class DBOperations {
         }
         db.close();
         return assesment;
+    }
+
+    public String getLastAssesment(Patient p){
+        String theDate = null;
+        Assesment result = null;
+        Pregnancy activePregnancy = findActivePregnancy(p);
+
+        if(activePregnancy != null){
+            String query = "SELECT * FROM " + TABLE_ASSESMENTS +
+                    " WHERE " + COLUMN_PREGNANCY_FK + " = \"" + activePregnancy.getId() + "\"";
+
+            db = dbHelper.getWritableDatabase();
+            Cursor cursor = db.rawQuery(query, null);
+            try {
+                if (cursor.moveToLast()) {
+                    result = new Assesment (
+                            Integer.parseInt(cursor.getString(0)),
+                            Integer.parseInt(cursor.getString(1)),
+                            cursor.getString(2),
+                            cursor.getString(3),
+                            Integer.parseInt(cursor.getString(4)),
+                            Integer.parseInt(cursor.getString(5)),
+                            Integer.parseInt(cursor.getString(6)));
+                }
+            } catch (SQLiteException e) {
+                Log.d(TAG, "Error while trying to get last assesment ");
+            }
+            String start_dt = result.getStart_date();
+            DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
+            SimpleDateFormat newFormat = new SimpleDateFormat("dd-MM-yyyy");
+            try {
+                Date date = (Date) formatter.parse(start_dt);
+                theDate = newFormat.format(date);
+            } catch (ParseException e) {
+                    e.printStackTrace();
+            }
+        }
+
+        db.close();
+        return theDate;
     }
 
     public List<Assesment> getAllAssesmentsFromPregnancy(Pregnancy pregnancy){
