@@ -400,6 +400,10 @@ public class DBOperations {
     public int addAssesment(Pregnancy pregnancy, Assesment assesment){
         db = dbHelper.getWritableDatabase();
         long assesmentId = 0;
+        /*
+        *  Date format
+        *  dd-MM-yyyy-hh-mm-ss
+        * */
         try {
             ContentValues values = new ContentValues();
             values.put(COLUMN_PREGNANCY_FK, pregnancy.getId());

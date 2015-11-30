@@ -111,9 +111,9 @@ public class PatientProfile extends Activity {
                     i.putExtra("_id", currentPatient.getId());
                     startActivity(i); // Go to PregnancyProfile
                 } else if(btnCheck.isPressed()){
-                    // TODO IMPLEMENT GO TO CHECK
+
                 } else if(btnAssesments.isPressed()){
-                    // TODO GO TO LIST OF ASSESMENTS
+
                 }
             }
         };

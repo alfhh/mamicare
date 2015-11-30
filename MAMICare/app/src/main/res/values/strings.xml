@@ -19,6 +19,8 @@
     <!-- Buttons -->
     <string name="botonAgregar">Agregar registro</string>
     <string name="botonCancelar">Cancelar registro</string>
+    <string name="botonAgregarR">Agregar revisión</string>
+    <string name="botonCancelarR">Cancelar revisión</string>
     <string name="botonNuevaRevision">Nueva revisión</string>
     <string name="botonListaRevision">Lista de revisiónes</string>
     <string name="botonNuevoEmbarazo">Lista de embarazos</string>
@@ -35,6 +37,8 @@
     <string name="duracion">Duración: </string>
     <string name="presion">Lectura de presión arterial:  </string>
     <string name="evaluacion">La evaluación es: </string>
+    <string name="oxigeno">Oxigeno en la sangre: </string>
+    <string name="ritmo">Ritmo cardiaco: </string>
 
     <!-- TextView strings -->
     <string name="menuP">Menu Principal</string>
