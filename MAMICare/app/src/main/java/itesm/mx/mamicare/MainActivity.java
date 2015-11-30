@@ -31,15 +31,19 @@ public class MainActivity extends Activity {
     public void goToPatientProfile(Patient p){
         Intent i;
 
-        if(p != null){ // TODO CHANGE THIS WITH DB OPERATIONS
+        if(p != null){
             i = new Intent(MainActivity.this, PatientProfile.class);
             i.putExtra("_id", p.getId());
-            Log.d("ID OF PATIENT", ""+p.getId());
             startActivity(i);
         }
     }
 
-    // TODO FIX THE RELOAD WHEN ACTIVE PREGNANCY IS UPDATED
+    @Override
+    protected void onResume(){
+        super.onResume();
+        reloadData();
+    }
+
     /**
      * Method that reloads all the patients registered in the database and then updates the view
      * sending the new List to the adapter

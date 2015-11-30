@@ -27,12 +27,39 @@ public class PatientProfile extends Activity {
     ImageView imvUserPhoto;
     Patient currentPatient; // The selected patient
 
-    // TODO FIX THE RELOAD WHEN ACTIVE PREGNANCY IS UPDATED
+    @Override
+    protected void onResume(){
+        super.onResume();
+        reloadData();
+    }
+
+    /**
+     * Method used to realod data when returing from an activity
+     */
+    public void reloadData(){
+
+        // Get date of last assesment
+        if(currentPatient.getLastCheck() != null) { // TODO FIX last check
+            tvUserLastCheck.setText(currentPatient.getLastCheck());
+        } else {
+            tvUserLastCheck.setText("No existen revisiones previas");
+        }
+
+        // Get actual weeks of pregnancy
+        Pregnancy p = dbo.findActivePregnancy(currentPatient);
+        if(p != null){
+            tvUserPregWeek.setText("Semana " + dbo.getPassedWeeks(p.getId()));
+        } else {
+            tvUserPregWeek.setText("Embarazo no registrado");
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_profile);
+
+        Log.d("ON CREATE", "--------------------> ON CREATE PATIENT");
 
         // Database connection
         dbo = new DBOperations(getApplicationContext());
@@ -67,20 +94,8 @@ public class PatientProfile extends Activity {
             imvUserPhoto.setImageResource(R.drawable.nophoto);
         }
 
-        // Get date of last assesment
-        if(currentPatient.getLastCheck() != null) { // TODO FIX last check
-            tvUserLastCheck.setText(currentPatient.getLastCheck());
-        } else {
-            tvUserLastCheck.setText("No existen revisiones previas");
-        }
-
-        // Get actual weeks of pregnancy
-        Pregnancy p = dbo.findActivePregnancy(currentPatient);
-        if(p != null){
-            tvUserPregWeek.setText("Semana " + dbo.getPassedWeeks(p.getId()));
-        } else {
-            tvUserPregWeek.setText("Embarazo no registrado");
-        }
+        // Load data that could be updated
+        reloadData();
 
         // Button listener
         OnClickListener listener = new OnClickListener() {

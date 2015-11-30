@@ -11,7 +11,6 @@
         <item name="android:colorPrimaryDark">#0288D1</item>
         <item name="android:colorAccent">#FF4081</item>
 
-        <!-- TODO CHECK IF THESE COLORS WORKS -->
         <item name="android:colorButtonNormal">#B3E5FC</item>
         <!--<item name="android:divider">#B6B6B6</item>-->
 
