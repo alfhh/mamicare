@@ -43,7 +43,7 @@ public class PatientProfile extends Activity {
         // Get date of last assesment
         String last = dbo.getLastAssesment(currentPatient);
         if(last != null) {
-            tvUserLastCheck.setText("Fecha de ultima revisión: " + last);
+            tvUserLastCheck.setText(last);
         } else {
             tvUserLastCheck.setText("No existen revisiones previas");
         }

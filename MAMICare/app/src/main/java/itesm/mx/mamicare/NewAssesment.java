@@ -2,6 +2,7 @@ package itesm.mx.mamicare;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -80,7 +81,26 @@ public class NewAssesment extends Activity {
 
     // TODO IMPLEMENT CORRECT EVALUATION
     public int getMedicalEvaluation(int hr, int ox){
-        int evaluation = 0;
+        int evaluation;
+        Log.d("VALUES", "HR: " + hr + " OX: " + ox);
+
+        if((hr <= 90) && (ox <= 60)){
+            // Low pressure
+            evaluation = 1;
+
+        } else if((hr > 90 && hr <= 120) && (ox > 60 && ox <= 80 )){
+            // Ideal pressure
+            evaluation = 0;
+
+        } else if((hr > 120 && hr <= 140) && (ox > 80 && ox <= 90 )){
+            // Pre-high pressure
+            evaluation = 2;
+
+        } else {
+            // High pressure
+            evaluation = 3;
+        }
+
         return evaluation;
     }
 
@@ -92,6 +112,9 @@ public class NewAssesment extends Activity {
      * @return a number different than zero if the insert was successful
      */
     public int saveAssesment(int hr, int ox){
+        int result = 0;
+
+        // Format date of assesment
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
         Calendar c = Calendar.getInstance();
         c.add(Calendar.HOUR, -1);
@@ -99,10 +122,17 @@ public class NewAssesment extends Activity {
         String start = df.format(startTime.getTime());
         String end = df.format(c.getTime());
 
-        Assesment a = new Assesment(currentPregnancy.getId(), start, end, hr, ox,
-                getMedicalEvaluation(hr, ox));
+        // Get the blood evaluation
+        int evaluation = getMedicalEvaluation(hr, ox);
 
-        return dbo.addAssesment(currentPregnancy, a);
+        Assesment a = new Assesment(currentPregnancy.getId(), start, end, hr, ox, evaluation);
+
+        result = dbo.addAssesment(currentPregnancy, a);
+        if(result != 0){ // Then update the pregnancy
+            dbo.changeAlertofPregnancy(currentPregnancy.getId(), evaluation);
+        }
+
+        return result;
     }
 
 

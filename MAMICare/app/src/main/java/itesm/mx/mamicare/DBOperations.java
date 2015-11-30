@@ -313,6 +313,33 @@ public class DBOperations {
     }
 
     /**
+     * Method used to change thd current alert of a pregnancy.
+     * @param pregnancyId the id of the pregnancy
+     * @param alert the integer equal to the alert level
+     * @return an integer different than zero if successful
+     */
+    public int changeAlertofPregnancy(int pregnancyId, int alert){
+        int result = 0;
+        String query = "SELECT * FROM " + TABLE_PREGNANCIES +
+                " WHERE " + COLUMN_PREGNANCY_ID + " = \"" + pregnancyId + "\"";
+
+        db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        try {
+            if (cursor.moveToFirst()) {
+                ContentValues values = new ContentValues();
+                values.put(COLUMN_PREGNANCY_ALERT, alert);
+
+                result = db.update(TABLE_PREGNANCIES, values, "_id="+pregnancyId, null);
+            }
+        } catch (SQLiteException e) {
+            Log.d(TAG, "Error while trying edit pregnancy alert " + pregnancyId);
+        }
+        db.close();
+        return result;
+    }
+
+    /**
      * Method used to get the weeks passed since the begining of the pregnancy until
      * actual date
      * @param pregnancyId
@@ -497,14 +524,16 @@ public class DBOperations {
             } catch (SQLiteException e) {
                 Log.d(TAG, "Error while trying to get last assesment ");
             }
-            String start_dt = result.getStart_date();
-            DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
-            SimpleDateFormat newFormat = new SimpleDateFormat("dd-MM-yyyy");
-            try {
-                Date date = (Date) formatter.parse(start_dt);
-                theDate = newFormat.format(date);
-            } catch (ParseException e) {
+            if(result != null){
+                String start_dt = result.getStart_date();
+                DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
+                SimpleDateFormat newFormat = new SimpleDateFormat("dd-MM-yyyy");
+                try {
+                    Date date = (Date) formatter.parse(start_dt);
+                    theDate = newFormat.format(date);
+                } catch (ParseException e) {
                     e.printStackTrace();
+                }
             }
         }
 
