@@ -56,20 +56,23 @@ public class PregnanciesAdapter extends ArrayAdapter<Pregnancy> {
 
         // Default
         startDate.setText(pregnancy.getPregnancyStart());
-        alert.setText(String.valueOf(pregnancy.getAlert()));
-        endDate.setText("Embarazo actual");
 
-        // Extra dates TODO IMPLEMENT CALENDAR FUNCTIONS
-
-        int weeks = dbo.getRemainingWeeks(pregnancy.getId());
-
-        actualWeek.setText("Semana " + weeks);
-        remainingWeeks.setText("Faltan " + (49 - weeks)  + " semanas");
-
-        // Possible null values
-        if(pregnancy.getPregnancyEnd() != null)
+        // Pregancy ended
+        if(pregnancy.getAlert() == -1){
+            actualWeek.setText("Embarazo finalizado");
+            remainingWeeks.setText("Faltan 0 semenas");
+            alert.setText("Embarazo finalizado");
             endDate.setText(pregnancy.getPregnancyEnd());
 
+        } else { // Actual pregnancy
+
+            int weeks = dbo.getPassedWeeks(pregnancy.getId());
+            actualWeek.setText("Semana " + weeks);
+            remainingWeeks.setText("Faltan " + (49 - weeks)  + " semanas");
+            alert.setText(String.valueOf(pregnancy.getAlert()));
+            endDate.setText("Embarazo actual");
+
+        }
 
         return row;
     }

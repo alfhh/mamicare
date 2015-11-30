@@ -46,6 +46,9 @@
     <string name="uLastCheck">10 de agosto 2015</string>
     <string name="lorem">Lorem ipsum</string>
 
+    <!-- Strings of menu -->
+    <string name="endPreg">Marcar como terminado</string>
+
     <!-- Question strings -->
     <string name="person_name">Ejemplo: Rosa Jimenez</string>
     <string name="person_address">Ejemplo: Santiago Nuevo Leon</string>

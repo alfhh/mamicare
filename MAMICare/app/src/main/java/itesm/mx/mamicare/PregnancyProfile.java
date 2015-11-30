@@ -5,11 +5,16 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -43,10 +48,18 @@ public class PregnancyProfile extends Activity {
         // Bind views
         pregList = (ListView) findViewById(R.id.lvPregnancies);
         btn_Addpregnancy = (ImageButton) findViewById(R.id.btnNewPregnancy);
-        embarazos = dbo.getAllPregnanciesFromPatient(currentPatient);
+
+        // Avoid errors by checking if there are any previous pregnancies
+        if(dbo.getPregnanciesCountFromPatient(currentPatient) == 0){
+            embarazos = new ArrayList<>();
+        } else {
+            embarazos = dbo.getAllPregnanciesFromPatient(currentPatient);
+        }
+
         pregAdapter = new PregnanciesAdapter(getApplicationContext(),
                 R.layout.pregnancy_row, embarazos);
         pregList.setAdapter(pregAdapter);
+        registerForContextMenu(pregList);
 
         // Building DateDialog helpers
         calendar = Calendar.getInstance();
@@ -60,7 +73,7 @@ public class PregnancyProfile extends Activity {
             public void onClick(View v) {
 
                 if (btn_Addpregnancy.isPressed()){
-                    pregnancyButton();
+                    setDate(datePicker);
                 }
             }
         };
@@ -69,8 +82,13 @@ public class PregnancyProfile extends Activity {
 
     }
 
-    public void pregnancyButton(){
-        setDate(datePicker);
+    /**
+     * Method that reloads all the data in the views when info is updated
+     */
+    private void reloadData(){
+        pregAdapter.getData().clear();
+        pregAdapter.getData().addAll(dbo.getAllPregnanciesFromPatient(currentPatient));
+        pregAdapter.notifyDataSetChanged();
     }
 
     @SuppressWarnings("deprecation")
@@ -92,9 +110,50 @@ public class PregnancyProfile extends Activity {
     private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker datePicker, int arg1, int arg2, int arg3) {
-            Log.d("DATE SET", "Year: " + arg1 + " Month: " + (arg2 + 1) + " Day: " + arg3);
             Pregnancy p = new Pregnancy(0, ""+arg3+"-"+(arg2+1)+"-"+arg1);
-            dbo.addPregnancy(currentPatient, p);
+
+            // Check if there is any active pregnancy, if true then update to end and add the new one
+            // Else just add the new pregnancy
+            Pregnancy temp = dbo.findActivePregnancy(currentPatient);
+            if(temp != null){
+                dbo.endPregnancy(temp.getId());
+                dbo.addPregnancy(currentPatient, p); // <- Add to DataBase
+            } else {
+                dbo.addPregnancy(currentPatient, p); // <- Add to DataBase
+            }
+
+            reloadData();
+            Toast.makeText(getApplicationContext(), "Embarazo registrado", Toast.LENGTH_SHORT).show();
         }
     };
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
+        getMenuInflater().inflate(R.menu.menu_pregnancy_item, menu);
+        super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
+
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int id = item.getItemId();
+        Pregnancy selectedP = embarazos.get(info.position);
+
+        if (id == R.id.end){
+            if(selectedP.getAlert() != -1){ // Update in BD
+                if(dbo.endPregnancy(selectedP.getId()) != 0) {
+                    reloadData();
+                    Toast.makeText(getApplicationContext(),
+                            "Embarazo finalizado", Toast.LENGTH_SHORT).show();
+                }
+            } else { // Don't update, pregnancy already finished
+                Toast.makeText(getApplicationContext(),
+                        "Embarazo ya finalizado", Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        }
+
+        return super.onContextItemSelected(item);
+    }
 }

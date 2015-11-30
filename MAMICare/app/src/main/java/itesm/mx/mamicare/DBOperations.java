@@ -174,6 +174,12 @@ public class DBOperations {
     ////////////////////////////////////////
     // Pregnancy operations
 
+    /**
+     * Adds a pregnancy to the data base using the id of the patient as foreign key
+     * @param patient
+     * @param pregnancy
+     * @return
+     */
     public int addPregnancy(Patient patient, Pregnancy pregnancy){
         int fk = patient.getId();
         db = dbHelper.getWritableDatabase();
@@ -190,6 +196,30 @@ public class DBOperations {
             Log.d(TAG, "Error while trying to add pregnancy to database");
         }
         return (int) pregnancyId;
+    }
+
+    public Pregnancy findActivePregnancy(Patient p){
+        Pregnancy pregnancy = null;
+        String query = "SELECT * FROM " + TABLE_PREGNANCIES +
+                " WHERE " + COLUMN_PATIENT_FK + " = \"" + p.getId() + "\" AND " +
+                COLUMN_PREGNANCY_ALERT + " != \"" + "-1" + "\"";
+
+        db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        try {
+            if (cursor.moveToFirst()) {
+                pregnancy = new Pregnancy (
+                        Integer.parseInt(cursor.getString(0)),
+                        Integer.parseInt(cursor.getString(1)),
+                        Integer.parseInt(cursor.getString(2)),
+                        cursor.getString(3),
+                        cursor.getString(4));
+            }
+        } catch (SQLiteException e) {
+            Log.d(TAG, "Error while trying to get active pregnancy ");
+        }
+        db.close();
+        return pregnancy;
     }
 
     public boolean deletePregnancy(int pregnancyId){
@@ -241,12 +271,43 @@ public class DBOperations {
     }
 
     /**
+     * Method that ends the pregnancy of a patient. The pregnancy alert changes to -1 and
+     * the endDate of the pregnancy sets to actual day.
+     * @param pregnancyId
+     * @return an integer, if it's different than 0 then the table was correctly updated
+     */
+    public int endPregnancy(int pregnancyId){
+        int result = 0;
+        String query = "SELECT * FROM " + TABLE_PREGNANCIES +
+                " WHERE " + COLUMN_PREGNANCY_ID + " = \"" + pregnancyId + "\"";
+
+        db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        Calendar c = Calendar.getInstance();
+        String now = df.format(c.getTime());
+        try {
+            if (cursor.moveToFirst()) {
+                ContentValues values = new ContentValues();
+                values.put(COLUMN_PREGNANCY_ALERT, -1);
+                values.put(COLUMN_PREGNANCY_END, now);
+
+                result = db.update(TABLE_PREGNANCIES, values, "_id="+pregnancyId, null);
+            }
+        } catch (SQLiteException e) {
+            Log.d(TAG, "Error while trying to end pregnancy number " + pregnancyId);
+        }
+        db.close();
+        return result;
+    }
+
+    /**
      * Method used to get the weeks passed since the begining of the pregnancy until
      * actual date
      * @param pregnancyId
      * @return integer equal to the weeks passed
      */
-    public int getRemainingWeeks(int pregnancyId){
+    public int getPassedWeeks(int pregnancyId){
         int weeks = 0;
         String query = "SELECT * FROM " + TABLE_PREGNANCIES +
                 " WHERE " + COLUMN_PREGNANCY_ID + " = \"" + pregnancyId + "\"";
@@ -288,7 +349,8 @@ public class DBOperations {
         Cursor cursor = db.rawQuery(query, null);
         List<Pregnancy> pregnancies = new ArrayList<>();
         try {
-            while (cursor.moveToNext()){
+            cursor.moveToLast(); // Data is stored with newest data first
+            do {
                 //fetch pregnancies from db
                 Pregnancy pregnancy = new Pregnancy (
                         Integer.parseInt(cursor.getString(0)),
@@ -298,7 +360,7 @@ public class DBOperations {
                         cursor.getString(4));
                 //adding to list
                 pregnancies.add(pregnancy);
-            }
+            } while (cursor.moveToPrevious());
         } catch (SQLiteException e) {
             Log.d(TAG, "Error while trying to get all pregnancies from patient number " + patientId);
         }
@@ -309,7 +371,8 @@ public class DBOperations {
 
     public int getPregnanciesCountFromPatient(Patient patient) {
         int patientId = patient.getId();
-        String query = "SELECT * FROM " + TABLE_PREGNANCIES + " WHERE " + COLUMN_PATIENT_FK + " = " + Integer.toString(patientId);
+        String query = "SELECT * FROM " + TABLE_PREGNANCIES + " WHERE " + COLUMN_PATIENT_FK + " = "
+                + Integer.toString(patientId);
 
         db = dbHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);

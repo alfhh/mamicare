@@ -39,6 +39,7 @@ public class MainActivity extends Activity {
         }
     }
 
+    // TODO FIX THE RELOAD WHEN ACTIVE PREGNANCY IS UPDATED
     /**
      * Method that reloads all the patients registered in the database and then updates the view
      * sending the new List to the adapter
