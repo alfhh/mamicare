@@ -95,6 +95,7 @@ public class PregnancyProfile extends Activity {
      * Method that reloads all the data in the views when info is updated
      */
     private void reloadData(){
+        imvEmptyList.setVisibility(View.INVISIBLE);
         pregAdapter.getData().clear();
         pregAdapter.getData().addAll(dbo.getAllPregnanciesFromPatient(currentPatient));
         pregAdapter.notifyDataSetChanged();
