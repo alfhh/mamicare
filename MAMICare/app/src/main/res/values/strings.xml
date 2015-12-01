@@ -7,14 +7,14 @@
 
 
     <!-- Activities headings-->
-    <string name="MAMICARE">MAMICARE</string>
+    <string name="MAMICARE">MAMICare</string>
     <string name="newPatient">Agregar nueva paciente</string>
     <string name="mainmenu">MAMICare - Menu principal</string>
     <string name="title_activity_recycler_view">RecyclerViewActivity</string>
     <string name="title_activity_new_patient">NewPatient</string>
-    <string name="title_activity_patient_profile">PatientProfile</string>
+    <string name="title_activity_patient_profile">Perfil de paciente</string>
     <string name="title_activity_profiles">Profiles</string>
-    <string name="title_activity_pregnancy_profile">PregnancyProfile</string>
+    <string name="title_activity_pregnancy_profile">Historial de embarazos</string>
 
     <!-- Buttons -->
     <string name="botonAgregar">Agregar registro</string>
@@ -65,7 +65,7 @@
     <string name="person_address">Ejemplo: Santiago Nuevo Leon</string>
     <string name="pregnant_week">Ejemplo: 16</string>
     <string name="last_check">Ultima revisión: 16 de Junio 15</string>
-    <string name="title_activity_assesment_list">AssesmentList</string>
-    <string name="title_activity_new_assesment">NewAssesment</string>
+    <string name="title_activity_assesment_list">Historial médico</string>
+    <string name="title_activity_new_assesment">Nueva revisión</string>
 
 </resources>

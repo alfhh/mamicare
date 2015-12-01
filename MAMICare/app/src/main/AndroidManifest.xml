@@ -14,7 +14,7 @@
         <activity
             android:screenOrientation="landscape"
             android:name=".MainActivity"
-            android:label="@string/mainmenu" >
+            android:label="@string/MAMICARE" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
