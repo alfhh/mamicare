@@ -11,12 +11,12 @@
         android:layout_height="wrap_content"
         android:text="@string/oxigeno"
         android:id="@+id/tvOxygen"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="43dp"
+        android:layout_marginTop="196dp"
         android:textSize="14sp"
-        android:textColor="#212121" />
+        android:textColor="#212121"
+        android:layout_marginStart="419dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -53,16 +53,16 @@
         android:layout_height="wrap_content"
         android:text="@string/botonCancelarR"
         android:id="@+id/btnCancel"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="129dp"
         android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/tvOxygen" />
+        android:layout_alignEnd="@+id/tvOxygen" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/botonAgregarR"
         android:id="@+id/btnSave"
-        android:layout_marginStart="37dp"
-        android:layout_alignTop="@+id/btnCancel"
-        android:layout_toEndOf="@+id/btnCancel" />
+        android:layout_alignBaseline="@+id/btnCancel"
+        android:layout_alignBottom="@+id/btnCancel"
+        android:layout_alignEnd="@+id/etRate" />
 </RelativeLayout>
