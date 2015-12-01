@@ -2,6 +2,8 @@ package itesm.mx.mamicare;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ public class AssesmentList extends Activity {
 
     Bundle data; // Data from the intent
     DBOperations dbo; // Database API
+    ImageView imvEmptyList; // Image displayed when no elements are on the list
     List<Assesment> assesments; // List of assesments
     ListView asstList; // ListView with assesments
     AssesmentListAdapter assmtAdapter; // Adapter used for the ListView
@@ -34,11 +37,14 @@ public class AssesmentList extends Activity {
 
         // Bind views
         asstList = (ListView) findViewById(R.id.lvAssesments);
+        imvEmptyList = (ImageView) findViewById(R.id.imvListaVacia);
 
         // Avoid errors by checking if there are any previous pregnancies
         if(dbo.getAssesmentsCountFromPregnancy(currentPregnancy) == 0){
             assesments = new ArrayList<>();
+            imvEmptyList.setVisibility(View.VISIBLE);
         } else { // Load data from DB
+            imvEmptyList.setVisibility(View.INVISIBLE);
             assesments = dbo.getAllAssesmentsFromPregnancy(currentPregnancy);
         }
 

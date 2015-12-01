@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ public class PregnancyProfile extends Activity {
     DatePicker datePicker; // Date picker dialog
     Calendar calendar; // Used to get dates
     DBOperations dbo; // Database API
+    ImageView imvEmptyList; // Image displayed when no elements are on the list
     List<Pregnancy> embarazos; // List of pregnancies
     ListView pregList; // ListView with pregnancies
     ImageButton btn_Addpregnancy; // Used to add a new pregnancy
@@ -52,11 +54,14 @@ public class PregnancyProfile extends Activity {
         // Bind views
         pregList = (ListView) findViewById(R.id.lvPregnancies);
         btn_Addpregnancy = (ImageButton) findViewById(R.id.btnNewPregnancy);
+        imvEmptyList = (ImageView) findViewById(R.id.imvListaVacia);
 
         // Avoid errors by checking if there are any previous pregnancies
         if(dbo.getPregnanciesCountFromPatient(currentPatient) == 0){
             embarazos = new ArrayList<>();
+            imvEmptyList.setVisibility(View.VISIBLE);
         } else { // Load data from DB
+            imvEmptyList.setVisibility(View.INVISIBLE);
             embarazos = dbo.getAllPregnanciesFromPatient(currentPatient);
         }
 
