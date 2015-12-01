@@ -7,7 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 // Licencia GPL 3.0
 // Autores: Alfredo Hinojosa, Emilio Flores, Sergio Cordero
@@ -58,10 +63,32 @@ public class AssesmentListAdapter extends ArrayAdapter<Assesment> {
         Assesment assmnt = adapterList.get(position);
 
        // Bind views
-        date.setText(assmnt.getStart_date());
-        duration.setText("2 horas");
         bloodP.setText("" + assmnt.getOxygen() +"/" + assmnt.gethRate());
-        evaluation.setText(String.valueOf(assmnt.getAlert()));
+        evaluation.setText(dbo.transformAlerttoString(assmnt.getAlert()));
+
+        // Fix hour issues
+        String theDate = "";
+        String duracion = "";
+
+        String start_dt = assmnt.getStart_date();
+        String end_dt = assmnt.getEnd_date();
+
+        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
+        SimpleDateFormat newFormat = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            Date tempDate =  formatter.parse(start_dt);
+            Date temp2 = formatter.parse(end_dt);
+
+            long diff = temp2.getTime() - tempDate.getTime(); // Get difference
+            diff = TimeUnit.MINUTES.convert(diff, TimeUnit.MILLISECONDS);
+            duracion = String.valueOf(diff);
+            theDate = newFormat.format(tempDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        date.setText(theDate);
+        duration.setText(duracion);
 
         return row;
     }

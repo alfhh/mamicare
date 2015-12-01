@@ -73,7 +73,7 @@ public class PregnanciesAdapter extends ArrayAdapter<Pregnancy> {
             int weeks = dbo.getPassedWeeks(pregnancy.getId());
             actualWeek.setText("Semana " + weeks);
             remainingWeeks.setText("Faltan " + (49 - weeks)  + " semanas");
-            alert.setText(String.valueOf(pregnancy.getAlert()));
+            alert.setText(dbo.transformAlerttoString(pregnancy.getAlert()));
             endDate.setText("Embarazo actual");
 
         }

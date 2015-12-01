@@ -589,6 +589,35 @@ public class DBOperations {
 
     ///////////////////////////////////////////
 
+
+    ////////////////////////////////////////
+    // Evaluation center
+
+    public String transformAlerttoString(int alertId){
+        String result = "";
+
+        switch (alertId){
+            case -1:
+                result = "Embarazo finalizado";
+                break;
+            case 0:
+                result = "Nivel de presión arterial normal";
+                break;
+            case 1:
+                result = "ADVERTENCIA - Nivel de presión arterial baja";
+                break;
+            case 2:
+                result = "ADVERTENCIA - Nivel de presión arterial alta";
+                break;
+            case 3:
+                result = "PELIGRO - Nivel de presión arterial muy alta";
+                break;
+        }
+        return result;
+    }
+
+    ///////////////////////////////////////////
+
     public DBOperations(Context context) {
         dbHelper = DBHelper.getInstance(context);
     }
