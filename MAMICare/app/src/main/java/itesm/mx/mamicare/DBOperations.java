@@ -553,7 +553,8 @@ public class DBOperations {
         Cursor cursor = db.rawQuery(query, null);
         List<Assesment> assesments = new ArrayList<>();
         try {
-            while (cursor.moveToNext()) {
+            cursor.moveToLast(); // Data is stored with newest data first
+            do {
                 //fetch pregnancies from db
                 Assesment  assesment = new Assesment (
                         Integer.parseInt(cursor.getString(0)),
@@ -565,7 +566,7 @@ public class DBOperations {
                         Integer.parseInt(cursor.getString(6)));
                 //adding to list
                 assesments.add(assesment);
-            }
+            } while (cursor.moveToPrevious());
         } catch (SQLiteException e) {
             Log.d(TAG, "Error while trying to get all assesments from pregnancy number " + pregnancyId);
         }

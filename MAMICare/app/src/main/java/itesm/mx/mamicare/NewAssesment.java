@@ -83,19 +83,25 @@ public class NewAssesment extends Activity {
 
     }
 
+    /**
+     * Method used to evaluate the health of the patient using the values obtained.
+     * @param hr
+     * @param ox
+     * @return and integer equal to the health level of the patient
+     */
     public int getMedicalEvaluation(int hr, int ox){
         int evaluation;
         Log.d("VALUES", "HR: " + hr + " OX: " + ox);
 
-        if((hr <= 90) && (ox <= 60)){
+        if((ox <= 90) && (hr <= 60)){
             // Low pressure
             evaluation = 1;
 
-        } else if((hr > 90 && hr <= 120) && (ox > 60 && ox <= 80 )){
+        } else if((ox > 90 && ox <= 120) && (hr > 60 && hr <= 80 )){
             // Ideal pressure
             evaluation = 0;
 
-        } else if((hr > 120 && hr <= 140) && (ox > 80 && ox <= 90 )){
+        } else if((ox > 120 && ox <= 140) && (hr > 80 && hr <= 90 )){
             // Pre-high pressure
             evaluation = 2;
 
@@ -104,6 +110,7 @@ public class NewAssesment extends Activity {
             evaluation = 3;
         }
 
+        Log.d("Final evaluation", " ----> " + evaluation);
         return evaluation;
     }
 
