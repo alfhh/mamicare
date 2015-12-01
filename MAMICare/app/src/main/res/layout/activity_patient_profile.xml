@@ -7,7 +7,6 @@
     tools:context="itesm.mx.mamicare.PatientProfile">
 
     <!-- A single card with different info of the patient -->
-    <!-- TODO CHECK THE LAYOUT WIDTH OF THE CARDS, IS FIXED RIGHT NOW -->
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="1150dp"
@@ -41,8 +40,11 @@
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/imv_PatientPhoto"
-                >
+
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/imv_PatientPhoto"
+                android:layout_marginStart="39dp"
+                android:layout_marginTop="42dp">
 
 
                 <TableRow
