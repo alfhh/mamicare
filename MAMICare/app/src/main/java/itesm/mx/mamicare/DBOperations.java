@@ -593,6 +593,12 @@ public class DBOperations {
     ////////////////////////////////////////
     // Evaluation center
 
+    /**
+     * Method used to transform an alert on integer form to the actual meaning of the alert in
+     * string format.
+     * @param alertId
+     * @return an string equal to the level of alert
+     */
     public String transformAlerttoString(int alertId){
         String result = "";
 
