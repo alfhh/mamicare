@@ -7,15 +7,38 @@
 
 
     <!-- Activities headings-->
-    <string name="MAMICARE">MAMICARE</string>
+    <string name="MAMICARE">MAMICare</string>
     <string name="newPatient">Agregar nueva paciente</string>
     <string name="mainmenu">MAMICare - Menu principal</string>
+    <string name="title_activity_recycler_view">RecyclerViewActivity</string>
+    <string name="title_activity_new_patient">NewPatient</string>
+    <string name="title_activity_patient_profile">Perfil de paciente</string>
+    <string name="title_activity_profiles">Profiles</string>
+    <string name="title_activity_pregnancy_profile">Historial de embarazos</string>
 
     <!-- Buttons -->
     <string name="botonAgregar">Agregar registro</string>
     <string name="botonCancelar">Cancelar registro</string>
+    <string name="botonAgregarR">Agregar revisión</string>
+    <string name="botonCancelarR">Cancelar revisión</string>
     <string name="botonNuevaRevision">Nueva revisión</string>
-    <string name="botonNuevoEmbarazo">Nuevo embarazo</string>
+    <string name="botonListaRevision">Lista de revisiónes</string>
+    <string name="botonNuevoEmbarazo">Lista de embarazos</string>
+
+    <!-- Pregnancy -->
+    <string name="fechaInicio">Fecha de inicio de embarazo: </string>
+    <string name="semActual">Semana actual de embarazo: </string>
+    <string name="semRes">Semanas restantes: </string>
+    <string name="alertaActual">Alerta: </string>
+    <string name="fechaTermino">Fecha de termino de embarazo: </string>
+
+    <!-- Assesment -->
+    <string name="fechaRevision">Fecha de revisión: </string>
+    <string name="duracion">Duración: </string>
+    <string name="presion">Lectura de presión arterial:  </string>
+    <string name="evaluacion">La evaluación es: </string>
+    <string name="oxigeno">Oxigeno en la sangre: </string>
+    <string name="ritmo">Ritmo cardiaco: </string>
 
     <!-- TextView strings -->
     <string name="menuP">Menu Principal</string>
@@ -32,31 +55,17 @@
     <string name="uAge">26 de agosto de 1992</string>
     <string name="uPregWeek">Semana de embarazo actual: 12</string>
     <string name="uLastCheck">10 de agosto 2015</string>
+    <string name="lorem">Lorem ipsum</string>
+
+    <!-- Strings of menu -->
+    <string name="endPreg">Marcar como terminado</string>
 
     <!-- Question strings -->
     <string name="person_name">Ejemplo: Rosa Jimenez</string>
     <string name="person_address">Ejemplo: Santiago Nuevo Leon</string>
     <string name="pregnant_week">Ejemplo: 16</string>
     <string name="last_check">Ultima revisión: 16 de Junio 15</string>
-    <string name="title_activity_recycler_view">RecyclerViewActivity</string>
-    <string name="title_activity_new_patient">NewPatient</string>
-    <string name="title_activity_patient_profile">PatientProfile</string>
-    <string name="title_activity_profiles">Profiles</string>
-
-    <!-- Date spinner TODO DELETE IF NOT NEEEDED -->
-    <string-array name="monthArray">
-        <item>Enero</item>
-        <item>Febrero</item>
-        <item>Marzo</item>
-        <item>Abril</item>
-        <item>Mayo</item>
-        <item>Junio</item>
-        <item>Julio</item>
-        <item>Agosto</item>
-        <item>Septiembre</item>
-        <item>Octubre</item>
-        <item>Noviembre</item>
-        <item>Diciembre</item>
-    </string-array>
+    <string name="title_activity_assesment_list">Historial médico</string>
+    <string name="title_activity_new_assesment">Nueva revisión</string>
 
 </resources>

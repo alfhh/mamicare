@@ -10,7 +10,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+
+// Licencia GPL 3.0
+// Autores: Alfredo Hinojosa, Emilio Flores, Sergio Cordero
+// Profesora: Martha Sordia, Director: Mario de la Fuente
 
 /**
  * Created by Alfredo Hinojosa on 11/22/2015.
@@ -18,6 +26,7 @@ import java.util.List;
 public class PatientListAdapter extends ArrayAdapter<Patient> {
     int layoutResourceId;
     List<Patient> adapterList;
+    DBOperations dbo; // Database API
 
     private Context context;
 
@@ -36,6 +45,9 @@ public class PatientListAdapter extends ArrayAdapter<Patient> {
     public View getView(int position, View convertView, ViewGroup parent){
         View row = convertView;
 
+        // Database connection
+        dbo = new DBOperations(context);
+
         // convertView
         if(row == null) {
             LayoutInflater inflater =
@@ -53,8 +65,22 @@ public class PatientListAdapter extends ArrayAdapter<Patient> {
         // Load data
         Patient patient = adapterList.get(position);
         name.setText(patient.getName());
-        pregWeek.setText("Embarazo no registrado"); // TODO FIX
-        lastCheck.setText("No se ha realizado ningun chequeo"); // TODO FIX
+
+        // Get date of last assesment
+        String last = dbo.getLastAssesment(patient);
+        if(last != null) {
+            lastCheck.setText("Fecha de ultima revisión: " + last);
+        } else {
+            lastCheck.setText("No existen revisiones previas");
+        }
+
+        // Get active pregnancy
+        Pregnancy p = dbo.findActivePregnancy(patient);
+        if(p != null){
+            pregWeek.setText("Semana " + dbo.getPassedWeeks(p.getId()));
+        } else {
+            pregWeek.setText("Embarazo no registrado");
+        }
 
         // Set Patient image
         if(patient.getPhoto_path() != null){

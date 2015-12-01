@@ -1,5 +1,9 @@
 package itesm.mx.mamicare;
 
+// Licencia GPL 3.0
+// Autores: Alfredo Hinojosa, Emilio Flores, Sergio Cordero
+// Profesora: Martha Sordia, Director: Mario de la Fuente
+
 /**
  * Created by Alfredo Hinojosa on 10/25/2015.
  */

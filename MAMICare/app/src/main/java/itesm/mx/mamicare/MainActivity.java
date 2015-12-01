@@ -8,16 +8,22 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+// Licencia GPL 3.0
+// Autores: Alfredo Hinojosa, Emilio Flores, Sergio Cordero
+// Profesora: Martha Sordia, Director: Mario de la Fuente
+
 public class MainActivity extends Activity {
 
     DBOperations dbo; // Database API
     final int NEW_PATIENT = 1;
+    ImageView imvEmptyList; // Image displayed when no elements are on the list
     List<Patient> pacientes; // List of the current patients
     ListView pacientList; // ListView with patients
     ImageButton btn_Addpatient; // Used to add a new patient
@@ -31,16 +37,17 @@ public class MainActivity extends Activity {
     public void goToPatientProfile(Patient p){
         Intent i;
 
-        if(p != null){ // TODO CHANGE THIS WITH DB OPERATIONS
+        if(p != null){
             i = new Intent(MainActivity.this, PatientProfile.class);
-            i.putExtra("name", p.getName());
-            i.putExtra("address", p.getAddress());
-            i.putExtra("lastcheck", p.getLastCheck());
-            i.putExtra("bday", p.getBirthday());
-            i.putExtra("img", p.getPhoto_path());
-
+            i.putExtra("_id", p.getId());
             startActivity(i);
         }
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        reloadData();
     }
 
     /**
@@ -96,7 +103,14 @@ public class MainActivity extends Activity {
         btn_Addpatient = (ImageButton) findViewById(R.id.btnNewPatient);
         pacientes = dbo.getAllPatients(); // Load the actual patients in the database
         patientAdapter = new PatientListAdapter(getApplicationContext(), R.layout.item, pacientes);
+        imvEmptyList = (ImageView) findViewById(R.id.imvListaVacia);
         pacientList.setAdapter(patientAdapter);
+
+        if(dbo.getPatientCount() == 0){
+            imvEmptyList.setVisibility(View.VISIBLE);
+        } else {
+            imvEmptyList.setVisibility(View.INVISIBLE);
+        }
 
 
         // Listener for the ListView

@@ -5,7 +5,6 @@
     android:layout_height="match_parent">
 
     <!-- A single card with different info of the patient -->
-    <!-- TODO CHECK THE LAYOUT WIDTH OF THE CARDS, IS FIXED RIGHT NOW -->
     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="1150dp"
@@ -39,31 +38,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_PatientName"
-                android:layout_toRightOf="@+id/imv_PatientPhoto"
-                android:layout_alignParentTop="true"
                 android:textSize="34sp"
                 android:text="@string/person_name"
-                android:textColor="#212121" />
+                android:textColor="#212121"
+                android:layout_alignTop="@+id/imv_PatientPhoto"
+                android:layout_toEndOf="@+id/imv_PatientPhoto"
+                android:layout_marginTop="78dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_PregnancyWeek"
-                android:layout_toRightOf="@+id/imv_PatientPhoto"
-                android:layout_below="@+id/tv_PatientName"
                 android:textSize="24sp"
                 android:text="@string/uPregWeek"
-                android:textColor="#212121"/>
+                android:textColor="#212121"
+                android:layout_centerVertical="true"
+                android:layout_below="@id/tv_PatientName"
+                android:layout_toRightOf="@id/imv_PatientPhoto"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_LastCheck"
-                android:layout_toRightOf="@+id/imv_PatientPhoto"
-                android:layout_below="@+id/tv_PregnancyWeek"
                 android:textSize="24sp"
                 android:text="@string/last_check"
-                android:textColor="#212121"/>
+                android:textColor="#212121"
+                android:layout_below="@+id/tv_PregnancyWeek"
+                android:layout_toRightOf="@id/imv_PatientPhoto"
+                 />
 
 
         </RelativeLayout>
