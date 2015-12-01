@@ -18,6 +18,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+// Licencia GPL 3.0
+// Autores: Alfredo Hinojosa, Emilio Flores, Sergio Cordero
+// Profesora: Martha Sordia, Director: Mario de la Fuente
+
 public class PregnancyProfile extends Activity {
 
     Bundle data; // Data from the intent
@@ -118,7 +122,6 @@ public class PregnancyProfile extends Activity {
                 dbo.endPregnancy(temp.getId());
                 dbo.addPregnancy(currentPatient, p); // <- Add to DataBase
             } else {
-                // TODO HANDLE INCORRECT VALUES, LIKE FUTURE DATES
                 dbo.addPregnancy(currentPatient, p); // <- Add to DataBase
             }
 

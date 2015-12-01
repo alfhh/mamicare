@@ -9,6 +9,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
+// Licencia GPL 3.0
+// Autores: Alfredo Hinojosa, Emilio Flores, Sergio Cordero
+// Profesora: Martha Sordia, Director: Mario de la Fuente
+
 /**
  * Created by Alfredo Hinojosa on 11/28/2015.
  */

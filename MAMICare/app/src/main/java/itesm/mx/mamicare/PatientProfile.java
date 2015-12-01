@@ -14,6 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+// Licencia GPL 3.0
+// Autores: Alfredo Hinojosa, Emilio Flores, Sergio Cordero
+// Profesora: Martha Sordia, Director: Mario de la Fuente
+
 public class PatientProfile extends Activity {
 
     Bundle data; // Data from the intent

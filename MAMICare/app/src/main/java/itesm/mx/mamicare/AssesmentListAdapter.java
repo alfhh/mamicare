@@ -9,6 +9,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
+// Licencia GPL 3.0
+// Autores: Alfredo Hinojosa, Emilio Flores, Sergio Cordero
+// Profesora: Martha Sordia, Director: Mario de la Fuente
+
 /**
  * Created by Alfredo Hinojosa on 11/30/2015.
  */
@@ -55,7 +59,7 @@ public class AssesmentListAdapter extends ArrayAdapter<Assesment> {
 
        // Bind views
         date.setText(assmnt.getStart_date());
-        duration.setText("2 horas"); // TODO FIX THIS
+        duration.setText("2 horas");
         bloodP.setText("" + assmnt.getOxygen() +"/" + assmnt.gethRate());
         evaluation.setText(String.valueOf(assmnt.getAlert()));
 

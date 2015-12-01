@@ -7,6 +7,10 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+// Licencia GPL 3.0
+// Autores: Alfredo Hinojosa, Emilio Flores, Sergio Cordero
+// Profesora: Martha Sordia, Director: Mario de la Fuente
+
 public class AssesmentList extends Activity {
 
     Bundle data; // Data from the intent

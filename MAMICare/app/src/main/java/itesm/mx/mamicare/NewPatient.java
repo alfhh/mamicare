@@ -22,6 +22,10 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+// Licencia GPL 3.0
+// Autores: Alfredo Hinojosa, Emilio Flores, Sergio Cordero
+// Profesora: Martha Sordia, Director: Mario de la Fuente
+
 public class NewPatient extends Activity {
 
     Button btnSubmit; // Button to save new patient

@@ -12,6 +12,10 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+// Licencia GPL 3.0
+// Autores: Alfredo Hinojosa, Emilio Flores, Sergio Cordero
+// Profesora: Martha Sordia, Director: Mario de la Fuente
+
 public class NewAssesment extends Activity {
 
     Bundle data; // Data from the intent
@@ -79,7 +83,6 @@ public class NewAssesment extends Activity {
 
     }
 
-    // TODO IMPLEMENT CORRECT EVALUATION
     public int getMedicalEvaluation(int hr, int ox){
         int evaluation;
         Log.d("VALUES", "HR: " + hr + " OX: " + ox);
